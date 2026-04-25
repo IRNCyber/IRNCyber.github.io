@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[46781,["/IRNCyber/_next/static/chunks/bed7d6f82e7ffe28.js","/IRNCyber/_next/static/chunks/90df5682429f68de.js","/IRNCyber/_next/static/chunks/a1ab60cd0dec3ab7.js","/IRNCyber/_next/static/chunks/9dd831a3aab63ca9.js","/IRNCyber/_next/static/chunks/6b8a3c822ccfdcf4.js"],"default"]
+3:I[97367,["/IRNCyber/_next/static/chunks/ff1a16fafef87110.js","/IRNCyber/_next/static/chunks/7340adf74ff47ec0.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"flbuxmniV3kC9wJ7Pc-aN","rsc":["$","$1","c",{"children":[["$","section",null,{"id":"blog","children":["$","$L2",null,{"delay":0.04,"children":[["$","h1",null,{"className":"text-2xl font-semibold tracking-tight mb-2","children":["Blog ",["$","span",null,{"className":"ml-1 bg-card border border-border rounded-md px-2 py-1 text-muted-foreground text-sm","children":[7," posts"]}]]}],["$","p",null,{"className":"text-sm text-muted-foreground mb-8","children":"My thoughts on software development, life, and more."}]]}]}],[["$","script","script-0",{"src":"/IRNCyber/_next/static/chunks/6b8a3c822ccfdcf4.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

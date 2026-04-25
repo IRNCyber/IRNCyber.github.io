@@ -1,0 +1,4 @@
+:HL["/IRNCyber/_next/static/chunks/5da827469958062f.css","style"]
+:HL["/IRNCyber/_next/static/media/CabinetGrotesk_Medium-s.p.51c46af4.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
+:HL["/IRNCyber/_next/static/media/ClashDisplay_Semibold-s.p.c5d4e33f.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
+0:{"buildId":"flbuxmniV3kC9wJ7Pc-aN","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"blog","paramType":null,"paramKey":"blog","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
