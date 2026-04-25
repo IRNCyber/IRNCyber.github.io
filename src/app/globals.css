@@ -1,0 +1,568 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.18 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    position: relative;
+    min-height: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: var(--font-sans), sans-serif;
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  /* Shiki dual theme support */
+  .shiki,
+  .shiki span {
+    color: var(--shiki-light);
+    background-color: transparent;
+  }
+
+  .dark .shiki,
+  .dark .shiki span {
+    color: var(--shiki-dark);
+    background-color: transparent;
+  }
+
+.prose pre {
+    @apply leading-relaxed bg-transparent! font-mono!;
+  }
+
+  .prose code {
+    @apply m-0! mx-1! border rounded-md! px-1.5 py-0.5 bg-muted/60 dark:bg-muted/40 text-[13px]! font-mono text-foreground/90!;
+  }
+
+  .prose code::before, .prose code::after {
+    @apply content-none!;
+  }
+
+  .prose h1 {
+    @apply text-3xl! font-semibold! tracking-tight! leading-tight!;
+  }
+
+  .prose h2 {
+    @apply text-2xl! font-semibold! tracking-tight! leading-tight!;
+  }
+
+  .prose h3 {
+    @apply text-xl! font-semibold! tracking-tight! leading-tight!;
+  }
+
+  .prose h4 {
+    @apply text-base! font-medium! tracking-tight! leading-tight!;
+  }
+
+  .prose h5 {
+    @apply text-base! font-medium! tracking-tight! leading-tight!;
+  }
+
+  .prose h6 {
+    @apply text-base! font-medium! tracking-tight! leading-tight!;
+  }
+
+  .prose a {
+    @apply text-primary underline underline-offset-4;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-amber-500! pl-4 italic bg-muted/50 p-4 rounded-md rounded-l-none;
+  }
+
+  .prose blockquote p {
+    @apply m-0!;
+  }
+
+  .prose blockquote p:first-child {
+    @apply mt-0!;
+  }
+
+  /* Task lists (remark-gfm): remove bullet marker so it renders like a pure checklist */
+  .prose :where(ul.contains-task-list):not(:where([class~="not-prose"] *)) {
+    @apply list-none! pl-0!;
+  }
+
+  .prose :where(li.task-list-item):not(:where([class~="not-prose"] *)) {
+    @apply pl-0!;
+  }
+
+  .prose
+    :where(li.task-list-item > input[type="checkbox"]):not(
+      :where([class~="not-prose"] *)
+    ) {
+    @apply mr-2 align-middle!;
+  }
+
+  .prose :where(table):not(:where([class~="not-prose"]) *) {
+    @apply w-full min-w-full;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .prose :where(th):not(:where([class~="not-prose"] *)),
+  .prose :where(td):not(:where([class~="not-prose"] *)) {
+    @apply px-6 py-4 align-middle m-0 whitespace-nowrap;
+  }
+
+  .prose tr{
+    @apply hover:bg-accent/50! transition-colors! cursor-pointer! h-10!;
+  }
+
+  .prose :where(th):not(:where([class~="not-prose"] *)) {
+    @apply text-left font-semibold text-foreground border-b border-border m-0! bg-muted/50 p-3! py-2!;
+  }
+
+  .prose :where(td):not(:where([class~="not-prose"] *)) {
+    @apply text-muted-foreground border-b border-border text-sm! p-2!;
+  }
+
+  .prose :where(th:not(:last-child)):not(:where([class~="not-prose"] *)),
+  .prose :where(td:not(:last-child)):not(:where([class~="not-prose"] *)) {
+    @apply border-r border-border;
+  }
+
+  .prose :where(tbody tr:last-child td):not(:where([class~="not-prose"] *)) {
+    @apply border-b-0;
+  }
+
+}
+
+.theme-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  transition: opacity 350ms ease;
+}
+
+.theme-background canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.theme-background--light {
+  background:
+    radial-gradient(circle at 20% 15%, rgba(16, 185, 129, 0.12), transparent 22%),
+    radial-gradient(circle at 80% 25%, rgba(59, 130, 246, 0.14), transparent 24%),
+    linear-gradient(180deg, #fcfdff 0%, #f3f7fb 100%);
+}
+
+.theme-background--light::before,
+.theme-background--light::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  border-radius: 9999px;
+  filter: blur(50px);
+  opacity: 0.7;
+  will-change: transform;
+}
+
+.theme-background--light::before {
+  top: 10%;
+  left: 8%;
+  width: 26rem;
+  height: 26rem;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.18) 0%, transparent 68%);
+  animation: light-float-one 16s ease-in-out infinite alternate;
+}
+
+.theme-background--light::after {
+  right: 6%;
+  bottom: 8%;
+  width: 24rem;
+  height: 24rem;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 68%);
+  animation: light-float-two 20s ease-in-out infinite alternate;
+}
+
+.theme-background--dark {
+  background-color: #111;
+  background-image:
+    linear-gradient(to top, #222 5%, #111 6%, #111 7%, transparent 7%),
+    linear-gradient(to bottom, #111 30%, transparent 80%),
+    linear-gradient(to right, #222, #2e2e2e 5%, transparent 5%),
+    linear-gradient(to right, transparent 6%, #222 6%, #2e2e2e 9%, transparent 9%),
+    linear-gradient(to right, transparent 27%, #222 27%, #2e2e2e 34%, transparent 34%),
+    linear-gradient(to right, transparent 51%, #222 51%, #2e2e2e 57%, transparent 57%),
+    linear-gradient(to bottom, #111 35%, transparent 35%),
+    linear-gradient(to right, transparent 42%, #222 42%, #2e2e2e 44%, transparent 44%),
+    linear-gradient(to right, transparent 45%, #222 45%, #2e2e2e 47%, transparent 47%),
+    linear-gradient(to right, transparent 48%, #222 48%, #2e2e2e 50%, transparent 50%),
+    linear-gradient(to right, transparent 87%, #222 87%, #2e2e2e 91%, transparent 91%),
+    linear-gradient(to bottom, #111 37.5%, transparent 37.5%),
+    linear-gradient(to right, transparent 14%, #222 14%, #2e2e2e 20%, transparent 20%),
+    linear-gradient(to bottom, #111 40%, transparent 40%),
+    linear-gradient(to right, transparent 10%, #222 10%, #2e2e2e 13%, transparent 13%),
+    linear-gradient(to right, transparent 21%, #222 21%, #1a1a1a 25%, transparent 25%),
+    linear-gradient(to right, transparent 58%, #222 58%, #2e2e2e 64%, transparent 64%),
+    linear-gradient(to right, transparent 92%, #222 92%, #2e2e2e 95%, transparent 95%),
+    linear-gradient(to bottom, #111 48%, transparent 48%),
+    linear-gradient(to right, transparent 96%, #222 96%, #1a1a1a 99%, transparent 99%),
+    linear-gradient(
+      to bottom,
+      transparent 68.5%,
+      transparent 76%,
+      #111 76%,
+      #111 77.5%,
+      transparent 77.5%,
+      transparent 86%,
+      #111 86%,
+      #111 87.5%,
+      transparent 87.5%
+    ),
+    linear-gradient(to right, transparent 35%, #222 35%, #2e2e2e 41%, transparent 41%),
+    linear-gradient(to bottom, #111 68%, transparent 68%),
+    linear-gradient(
+      to right,
+      transparent 78%,
+      #333 78%,
+      #333 80%,
+      transparent 80%,
+      transparent 82%,
+      #333 82%,
+      #333 83%,
+      transparent 83%
+    ),
+    linear-gradient(to right, transparent 66%, #222 66%, #2e2e2e 85%, transparent 85%);
+  background-size: 300px 150px;
+  background-position: center bottom;
+}
+
+.theme-background--dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #111;
+  background-image:
+    linear-gradient(to top, #d2b48c 5%, #111 6%, #111 7%, transparent 7%),
+    linear-gradient(to bottom, #111 30%, transparent 30%),
+    linear-gradient(to right, #b22222, #871a1a 5%, transparent 5%),
+    linear-gradient(to right, transparent 6%, #ff6347 6%, #ff3814 9%, transparent 9%),
+    linear-gradient(to right, transparent 27%, #556b2f 27%, #39481f 34%, transparent 34%),
+    linear-gradient(to right, transparent 51%, #fa8072 51%, #f85441 57%, transparent 57%),
+    linear-gradient(to bottom, #111 35%, transparent 35%),
+    linear-gradient(to right, transparent 42%, #008080 42%, #004d4d 44%, transparent 44%),
+    linear-gradient(to right, transparent 45%, #008080 45%, #004d4d 47%, transparent 47%),
+    linear-gradient(to right, transparent 48%, #008080 48%, #004d4d 50%, transparent 50%),
+    linear-gradient(to right, transparent 87%, #789 87%, #4f5d6a 91%, transparent 91%),
+    linear-gradient(to bottom, #111 37.5%, transparent 37.5%),
+    linear-gradient(to right, transparent 14%, #bdb76b 14%, #989244 20%, transparent 20%),
+    linear-gradient(to bottom, #111 40%, transparent 40%),
+    linear-gradient(to right, transparent 10%, #808000 10%, #4d4d00 13%, transparent 13%),
+    linear-gradient(to right, transparent 21%, #8b4513 21%, #5e2f0d 25%, transparent 25%),
+    linear-gradient(to right, transparent 58%, #8b4513 58%, #5e2f0d 64%, transparent 64%),
+    linear-gradient(to right, transparent 92%, #2f4f4f 92%, #1c2f2f 95%, transparent 95%),
+    linear-gradient(to bottom, #111 48%, transparent 48%),
+    linear-gradient(to right, transparent 96%, #2f4f4f 96%, #1c2f2f 99%, transparent 99%),
+    linear-gradient(
+      to bottom,
+      transparent 68.5%,
+      transparent 76%,
+      #111 76%,
+      #111 77.5%,
+      transparent 77.5%,
+      transparent 86%,
+      #111 86%,
+      #111 87.5%,
+      transparent 87.5%
+    ),
+    linear-gradient(to right, transparent 35%, #cd5c5c 35%, #bc3a3a 41%, transparent 41%),
+    linear-gradient(to bottom, #111 68%, transparent 68%),
+    linear-gradient(
+      to right,
+      transparent 78%,
+      #bc8f8f 78%,
+      #bc8f8f 80%,
+      transparent 80%,
+      transparent 82%,
+      #bc8f8f 82%,
+      #bc8f8f 83%,
+      transparent 83%
+    ),
+    linear-gradient(to right, transparent 66%, #a52a2a 66%, #7c2020 85%, transparent 85%);
+  background-size: 300px 150px;
+  background-position: center bottom;
+  clip-path: circle(150px at center center);
+  animation: flashlight 20s ease infinite;
+}
+
+.theme-background--dark::after {
+  content: "";
+  position: absolute;
+  left: calc(50% + 59px);
+  bottom: 100px;
+  width: 25px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-image:
+    radial-gradient(circle, #fff 50%, transparent 50%),
+    radial-gradient(circle, #fff 50%, transparent 50%);
+  background-size: 10px 10px;
+  background-position:
+    left center,
+    right center;
+  animation: eyes 20s infinite;
+}
+
+@keyframes flashlight {
+  0% {
+    clip-path: circle(150px at -25% 10%);
+  }
+
+  38% {
+    clip-path: circle(150px at 60% 20%);
+  }
+
+  39% {
+    opacity: 1;
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  40% {
+    opacity: 0;
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  41% {
+    opacity: 1;
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  42% {
+    opacity: 0;
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  54% {
+    opacity: 0;
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  55% {
+    opacity: 1;
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  59% {
+    opacity: 1;
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  64% {
+    clip-path: circle(150px at 45% 78%);
+  }
+
+  68% {
+    clip-path: circle(150px at 85% 89%);
+  }
+
+  72% {
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  74% {
+    clip-path: circle(150px at 60% 86%);
+  }
+
+  100% {
+    clip-path: circle(150px at 150% 50%);
+  }
+}
+
+@keyframes eyes {
+  0%,
+  38% {
+    opacity: 0;
+  }
+
+  39%,
+  41% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  40% {
+    transform: scaleY(0);
+    filter: none;
+    background-image:
+      radial-gradient(circle, #fff 50%, transparent 50%),
+      radial-gradient(circle, #fff 50%, transparent 50%);
+  }
+
+  41% {
+    transform: scaleY(1);
+    background-image:
+      radial-gradient(circle, #ff0000 50%, transparent 50%),
+      radial-gradient(circle, #ff0000 50%, transparent 50%);
+    filter: drop-shadow(0 0 4px #ff8686);
+  }
+
+  42%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes light-float-one {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(8rem, 5rem, 0) scale(1.12);
+  }
+}
+
+@keyframes light-float-two {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(-9rem, -6rem, 0) scale(1.08);
+  }
+}
