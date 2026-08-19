@@ -67,12 +67,16 @@ type StatCard = {
 };
 
 const profileImageUrl = new URL(
-  "../../assets/dp.png",
+  "../../assets/dp.jpg",
   import.meta.url
 ).toString();
 const freelancerLogoUrl = new URL(
   "../../assets/freelancer-logo-open-graph.jpg",
   import.meta.url
+).toString();
+const collegeLogoUrl = new URL(
+    "../../assets/svsu.png",
+    import.meta.url
 ).toString();
 const schoolLogoUrl = new URL(
   "../../assets/tbcs.jpg",
@@ -228,6 +232,14 @@ I am looking to contribute with commitment, consistency, and continuous learning
     },
   ],
   education: [
+    {
+      school: "Shri Vishwakarma Skill University",
+      href: "svsu.ac.in",
+      logoUrl: collegeLogoUrl,
+      degree: "Btech Cyber Security",
+      start: "August 2026",
+      end: "June 2031",
+    },
     {
       school: "Torch Bearer Convent School",
       href: "#",
