@@ -5,13 +5,13 @@ import { allPosts } from "content-collections";
 import { DATA } from "@/data/resume";
 
 export const runtime = "edge";
+export const revalidate = false;
 
-export const alt = "Blog Post";
+export const alt = "Blog";
 export const size = {
     width: 1200,
     height: 630,
 };
-export const contentType = "image/png";
 
 const getFontData = async () => {
     try {
@@ -20,13 +20,13 @@ const getFontData = async () => {
                 new URL(
                     "../../../../public/fonts/CabinetGrotesk-Medium.ttf",
                     import.meta.url
-                )
+                ).toString()
             ).then((res) => res.arrayBuffer()),
             fetch(
                 new URL(
                     "../../../../public/fonts/ClashDisplay-Semibold.ttf",
                     import.meta.url
-                )
+                ).toString()
             ).then((res) => res.arrayBuffer()),
         ]);
         return { cabinetGrotesk, clashDisplay };
@@ -154,16 +154,16 @@ export default async function Image({
                 ),
                 {
                     ...size,
-                    fonts: fontData
-                        ? [
+                    ...(fontData && {
+                        fonts: [
                             {
                                 name: "Clash Display",
                                 data: fontData.clashDisplay,
                                 weight: 600,
                                 style: "normal",
                             },
-                        ]
-                        : undefined,
+                        ],
+                    }),
                 }
             );
         }
@@ -202,8 +202,8 @@ export default async function Image({
             ),
             {
                 ...size,
-                fonts: fontData
-                    ? [
+                ...(fontData && {
+                    fonts: [
                         {
                             name: "Cabinet Grotesk",
                             data: fontData.cabinetGrotesk,
@@ -222,8 +222,8 @@ export default async function Image({
                             weight: 600,
                             style: "normal",
                         },
-                    ]
-                    : undefined,
+                    ],
+                }),
             }
         );
     } catch (error) {

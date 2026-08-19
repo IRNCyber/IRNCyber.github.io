@@ -3,22 +3,20 @@ import { ImageResponse } from "next/og";
 import { DATA } from "@/data/resume";
 
 export const runtime = "edge";
-
-export const alt = DATA.name;
+export const revalidate = false;
 export const size = {
     width: 1200,
     height: 630,
 };
-export const contentType = "image/png";
 
 const getFontData = async () => {
     try {
         const [cabinetGrotesk, clashDisplay] = await Promise.all([
             fetch(
-                new URL("../../public/fonts/CabinetGrotesk-Medium.ttf", import.meta.url)
+                new URL("../../public/fonts/CabinetGrotesk-Medium.ttf", import.meta.url).toString()
             ).then((res) => res.arrayBuffer()),
             fetch(
-                new URL("../../public/fonts/ClashDisplay-Semibold.ttf", import.meta.url)
+                new URL("../../public/fonts/ClashDisplay-Semibold.ttf", import.meta.url).toString()
             ).then((res) => res.arrayBuffer()),
         ]);
         return { cabinetGrotesk, clashDisplay };
@@ -134,8 +132,8 @@ export default async function Image() {
             ),
             {
                 ...size,
-                fonts: fontData
-                    ? [
+                ...(fontData && {
+                    fonts: [
                         {
                             name: "Cabinet Grotesk",
                             data: fontData.cabinetGrotesk,
@@ -154,8 +152,8 @@ export default async function Image() {
                             weight: 600,
                             style: "normal",
                         },
-                    ]
-                    : undefined,
+                    ],
+                }),
             }
         );
     } catch (error) {
