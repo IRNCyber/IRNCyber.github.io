@@ -37,7 +37,7 @@ export async function generateMetadata({
     return undefined;
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
@@ -47,6 +47,7 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: { canonical: `${DATA.url}/blog/${slug}/` },
     openGraph: {
       title,
       description,
@@ -114,7 +115,7 @@ export default async function Blog({
   }).replace(/</g, "\\u003c");
 
   return (
-    <section id="blog">
+    <section id="blog" className="mx-auto max-w-4xl px-5 py-12">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -133,8 +134,9 @@ export default async function Blog({
           {post.title}
         </h1>
         <p className="text-sm text-muted-foreground">
-          {formatDate(post.publishedAt)}
+          {formatDate(post.publishedAt)} · {post.readingTime}
         </p>
+        <div className="flex flex-wrap gap-2">{post.tags.map((tag: string) => <span className="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground" key={tag}>{tag}</span>)}</div>
       </div>
       <div className="my-6 flex w-full items-center">
         <div
@@ -147,6 +149,7 @@ export default async function Blog({
           }}
         />
       </div>
+      {post.tableOfContents.length > 0 && <nav className="my-7 rounded-xl border border-border bg-card p-4" aria-label="Table of contents"><p className="mb-3 text-sm font-semibold text-foreground">On this page</p><ul className="m-0 grid gap-2 pl-4 text-sm">{post.tableOfContents.map((item: { title: string; id: string; depth: number }) => <li className={item.depth === 3 ? "ml-4" : ""} key={item.id}><a className="text-muted-foreground hover:text-foreground" href={`#${item.id}`}>{item.title}</a></li>)}</ul></nav>}
       <article className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
         <MDXContent code={post.mdx} components={mdxComponents} />
       </article>

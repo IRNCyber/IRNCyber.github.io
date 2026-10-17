@@ -1,387 +1,65 @@
-/* eslint-disable @next/next/no-img-element */
-import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DATA } from "@/data/resume";
 import Link from "next/link";
-import Markdown from "react-markdown";
-import ContactSection from "@/components/section/contact-section";
-import HackathonsSection from "@/components/section/hackathons-section";
-import ProjectsSection from "@/components/section/projects-section";
-import WorkSection from "@/components/section/work-section";
-import { ArrowUpRight } from "lucide-react";
-import memoji from "../../assets/memoji.svg";
+import type { Metadata } from "next";
+import { ArrowDownRight, ArrowUpRight, Check, Github, Linkedin, Mail, ShieldCheck } from "lucide-react";
+import { projects } from "@/data/projects";
+import { skillGroups } from "@/data/skills";
+import { certifications } from "@/data/certifications";
+import { clientFeedback } from "@/data/testimonials";
+import { AmbientBackground, CertificationArchive, CommandPalette, CopyEmailButton, FlashCards, GitHubLiveDetails, ProjectExplorer, ScrollProgress, TerminalWidget, ThemeToggle } from "@/components/portfolio-interactions";
 
-const BLUR_FADE_DELAY = 0.04;
+export const metadata: Metadata = {
+  title: "Cybersecurity Student & Web Developer",
+  description: "Rohan Naagar is a cybersecurity student and freelance web designer/developer in Gurugram, India.",
+  alternates: { canonical: "/" },
+};
+
+const socials = [
+  { label: "GitHub", href: "https://github.com/IRNCyber", icon: Github },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rohannaagar666", icon: Linkedin },
+];
 
 export default function Page() {
-  return (
-    <main className="min-h-dvh flex flex-col gap-16 relative">
-      <section id="hero">
-        <div className="mx-auto w-full max-w-5xl">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.12),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.12),_transparent_24%),linear-gradient(180deg,_rgba(255,255,255,0.92),_rgba(248,250,252,0.86))] p-8 shadow-[0_24px_80px_-32px_rgba(15,23,42,0.35)] dark:bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.18),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.18),_transparent_24%),linear-gradient(180deg,_rgba(15,23,42,0.92),_rgba(2,6,23,0.88))] md:p-10">
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-foreground/25 to-transparent" />
-            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div className="order-2 flex flex-col gap-4 lg:order-1">
-                <BlurFade
-                  delay={BLUR_FADE_DELAY * 0.5}
-                  className="w-fit rounded-full border border-emerald-500/20 bg-emerald-500/8 px-4 py-1 text-sm font-medium text-emerald-700 dark:text-emerald-300"
-                >
-                  Cybersecurity • Web • AI
-                </BlurFade>
-                <BlurFadeText
-                  delay={BLUR_FADE_DELAY}
-                  className="text-4xl font-semibold tracking-tighter sm:text-5xl lg:text-6xl"
-                  yOffset={8}
-                  text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
-                />
-                <BlurFadeText
-                  className="text-muted-foreground max-w-[640px] text-base md:text-lg lg:text-xl"
-                  delay={BLUR_FADE_DELAY}
-                  text={DATA.description}
-                />
-                <BlurFade
-                  delay={BLUR_FADE_DELAY * 1.5}
-                  className="flex flex-wrap gap-3 pt-2"
-                >
-                  <Link
-                    href={DATA.contact.social.GitHub.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-transform duration-200 hover:-translate-y-0.5"
-                  >
-                    View GitHub
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </Link>
-                  <Link
-                    href="/Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/80 px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/30 hover:bg-background"
-                  >
-                    Resume
-                  </Link>
-                </BlurFade>
-                <BlurFade
-                  delay={BLUR_FADE_DELAY * 1.75}
-                  className="grid gap-3 pt-4 sm:grid-cols-3"
-                >
-                  <div className="rounded-2xl border border-border/70 bg-background/70 px-4 py-3 backdrop-blur-sm">
-                    <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                      Focus
-                    </div>
-                    <div className="mt-1 text-sm font-medium text-foreground">
-                      Security and modern web products
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-border/70 bg-background/70 px-4 py-3 backdrop-blur-sm">
-                    <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                      Base
-                    </div>
-                    <div className="mt-1 text-sm font-medium text-foreground">
-                      {DATA.location}
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-border/70 bg-background/70 px-4 py-3 backdrop-blur-sm">
-                    <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                      Availability
-                    </div>
-                    <div className="mt-1 text-sm font-medium text-foreground">
-                      Freelance and collaborations
-                    </div>
-                  </div>
-                </BlurFade>
-              </div>
-              <div className="order-1 lg:order-2">
-                <BlurFade
-                  delay={BLUR_FADE_DELAY}
-                  className="relative mx-auto flex max-w-md items-center justify-center"
-                >
-                  <div className="absolute inset-8 rounded-full bg-emerald-500/10 blur-3xl dark:bg-emerald-400/10" />
-                  <div className="relative w-full rounded-[2rem] border border-border/70 bg-background/80 p-6 shadow-[0_20px_70px_-28px_rgba(15,23,42,0.5)] backdrop-blur-sm">
-                    <div className="absolute -right-6 -top-6 h-16 w-16 rounded-2xl border border-border/70 bg-background/90 p-3 shadow-lg">
-                      <img
-                        src={memoji.src}
-                        alt="Memoji illustration"
-                        className="h-full w-full object-contain"
-                      />
-                    </div>
-                    <div className="flex flex-col items-center gap-5">
-                      <Avatar className="size-28 rounded-full border shadow-lg ring-4 ring-muted md:size-36">
-                        <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                        <AvatarFallback>{DATA.initials}</AvatarFallback>
-                      </Avatar>
-                      <div className="flex w-full items-center justify-between rounded-2xl border border-border/70 bg-muted/40 px-4 py-3 text-sm">
-                        <div>
-                          <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                            Identity
-                          </div>
-                          <div className="font-medium text-foreground">
-                            IRNCyber
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                            Current
-                          </div>
-                          <div className="font-medium text-foreground">
-                            Learning fast
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </BlurFade>
-              </div>
-            </div>
+  return <>
+    <ScrollProgress />
+    <AmbientBackground />
+    <div className="site-shell">
+      <header className="site-header"><Link className="wordmark" href="/" aria-label="IRNCyber home"><img className="wordmark-icon" src="/irncyber-mark.svg" alt="" aria-hidden="true" /><span>IRNCyber<span className="wordmark-dot">.</span></span></Link><nav className="top-nav" aria-label="Main navigation"><a href="#projects">Projects</a><a href="#security">Security</a><a href="https://irncyber.blogspot.com/" target="_blank" rel="noreferrer">IRNCyber Blog</a><a href="https://irndev.blogspot.com/" target="_blank" rel="noreferrer">IRNDev Blog</a><a href="#contact">Contact</a></nav><div className="header-tools"><CommandPalette /><ThemeToggle /><a className="header-resume" href="/Resume.pdf" target="_blank" rel="noreferrer">Resume <ArrowUpRight size={14} /></a></div></header>
+
+      <main>
+        <section className="hero section-wrap" id="top">
+          <div className="hero-copy"><p className="eyebrow hero-kicker"><span className="status-dot" /> GURUGRAM, INDIA <span className="eyebrow-divider">/</span> CYBERSECURITY · WEB</p>
+            <h1>I build for the web.<br /><span>I learn how to defend it.</span></h1>
+            <p className="hero-role"><span className="mono">role:// </span><span className="role-typing">Cybersecurity student · Web developer</span></p>
+            <p className="hero-lede">I’m Rohan Naagar — a cybersecurity student and freelance web designer/developer focused on useful, responsive digital experiences.</p>
+            <div className="hero-actions"><a className="button button-primary" href="#contact">Hire me <ArrowUpRight size={16} /></a><a className="button button-secondary" href="#projects">View projects <ArrowDownRight size={16} /></a></div>
+            <div className="hero-socials" aria-label="Social profiles">{socials.map(({ label, href, icon: Icon }) => <a href={href} key={label} target="_blank" rel="noreferrer" aria-label={label}><Icon size={17} />{label}<ArrowUpRight size={12} /></a>)}<a href="mailto:rohannaagar666@gmail.com"><Mail size={16} />Email<ArrowUpRight size={12} /></a></div>
           </div>
-        </div>
-      </section>
-      <section id="about">
-        <div className="flex min-h-0 flex-col gap-y-4 rounded-[1.75rem] border border-border/70 bg-card/70 p-6 shadow-[0_18px_60px_-34px_rgba(15,23,42,0.4)] backdrop-blur-sm md:p-8">
-          <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">About</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-              <Markdown>{DATA.summary}</Markdown>
-            </div>
-          </BlurFade>
-        </div>
-      </section>
-      <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 6}>
-            <WorkSection />
-          </BlurFade>
-        </div>
-      </section>
-      <section id="education">
-        <div className="flex min-h-0 flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
-          </BlurFade>
-          <div className="flex flex-col gap-8">
-            {DATA.education.map((education, index) => (
-              <BlurFade
-                key={education.school}
-                delay={BLUR_FADE_DELAY * 8 + index * 0.05}
-              >
-                <Link
-                  href={education.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-x-3 rounded-2xl border border-border/70 bg-card/70 px-4 py-4 shadow-[0_16px_45px_-32px_rgba(15,23,42,0.5)] transition-colors hover:border-foreground/20"
-                >
-                  <div className="flex min-w-0 flex-1 items-center gap-x-3">
-                    {education.logoUrl ? (
-                      <img
-                        src={education.logoUrl}
-                        alt={education.school}
-                        className="size-10 rounded-full border p-1 shadow ring-2 ring-border overflow-hidden object-contain flex-none"
-                      />
-                    ) : (
-                      <div className="size-10 rounded-full border p-1 shadow ring-2 ring-border bg-muted flex-none" />
-                    )}
-                    <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                      <div className="flex items-center gap-2 font-semibold leading-none">
-                        {education.school}
-                        <ArrowUpRight
-                          className="h-3.5 w-3.5 -translate-x-2 text-muted-foreground opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
-                          aria-hidden
-                        />
-                      </div>
-                      <div className="font-sans text-sm text-muted-foreground">
-                        {education.degree}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-none items-center gap-1 text-right text-xs tabular-nums text-muted-foreground">
-                    <span>
-                      {education.start} - {education.end}
-                    </span>
-                  </div>
-                </Link>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="skills">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
-          </BlurFade>
-          <div className="flex flex-wrap gap-3">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade
-                key={skill.name}
-                delay={BLUR_FADE_DELAY * 10 + id * 0.03}
-              >
-                <div className="group flex h-10 w-fit items-center gap-2 rounded-2xl border border-border bg-background/85 px-4 ring-2 ring-border/20 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/25 hover:shadow-[0_14px_30px_-20px_rgba(34,197,94,0.45)]">
-                  {skill.icon && (
-                    <skill.icon className="size-4 rounded overflow-hidden object-contain text-foreground/85" />
-                  )}
-                  <span className="text-sm font-medium text-foreground">
-                    {skill.name}
-                  </span>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="languages">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <h2 className="text-xl font-bold">Languages</h2>
-          </BlurFade>
-          <div className="flex flex-wrap gap-2">
-            {DATA.languages.map((language, id) => (
-              <BlurFade
-                key={language.name}
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-              >
-                <div className="flex h-8 w-fit items-center gap-2 rounded-xl border border-border bg-background px-4 ring-2 ring-border/20">
-                  <span className="text-sm font-medium text-foreground">
-                    {language.name} - {language.proficiency}
-                  </span>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="certifications">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <h2 className="text-xl font-bold">Certifications</h2>
-          </BlurFade>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {DATA.certifications.map((cert, id) => (
-              <BlurFade
-                key={cert.title}
-                delay={BLUR_FADE_DELAY * 14 + id * 0.03}
-              >
-                <div className="flex flex-col gap-1 rounded-xl border border-border bg-background px-4 py-3 ring-2 ring-border/20">
-                  <span className="text-sm font-medium text-foreground">
-                    ✓ {cert.title}
-                  </span>
-                  {(cert.source || cert.level) && (
-                    <span className="text-xs text-muted-foreground">
-                      {[cert.source, cert.level].filter(Boolean).join(" | ")}
-                    </span>
-                  )}
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="awards">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 15}>
-            <h2 className="text-xl font-bold">Awards & Honors</h2>
-          </BlurFade>
-          <div className="flex flex-col gap-2">
-            {DATA.awards.map((award, id) => (
-              <BlurFade
-                key={award.title}
-                delay={BLUR_FADE_DELAY * 16 + id * 0.05}
-              >
-                <div className="flex items-center rounded-xl border border-border bg-background px-4 py-2 ring-2 ring-border/20">
-                  <span className="text-sm font-medium text-foreground">
-                    🏆 {award.title}
-                  </span>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="projects">
-        <BlurFade delay={BLUR_FADE_DELAY * 17}>
-          <ProjectsSection />
-        </BlurFade>
-      </section>
-      <section id="app-links">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 18}>
-            <h2 className="text-xl font-bold">App Links</h2>
-          </BlurFade>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {DATA.appLinks.map((link, id) => (
-              <BlurFade
-                key={link.title}
-                delay={BLUR_FADE_DELAY * 19 + id * 0.03}
-              >
-                <Link
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-start justify-between gap-3 rounded-xl border border-border bg-background px-4 py-3 ring-2 ring-border/20 transition-colors hover:ring-primary/30"
-                >
-                  <div className="min-w-0">
-                    <div className="text-sm font-medium text-foreground">
-                      {link.title}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {link.category}
-                      {link.note ? ` | ${link.note}` : ""}
-                    </div>
-                  </div>
-                  <ArrowUpRight className="h-4 w-4 flex-none text-muted-foreground transition-colors group-hover:text-foreground" />
-                </Link>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="stats">
-        <div className="flex min-h-0 flex-col gap-y-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 20}>
-            <h2 className="text-xl font-bold">Git Score & Charts</h2>
-          </BlurFade>
-          <div className="grid gap-4 md:grid-cols-2">
-            {DATA.stats.map((stat, id) => (
-              <BlurFade
-                key={stat.title}
-                delay={BLUR_FADE_DELAY * 21 + id * 0.04}
-              >
-                <Link
-                  href={stat.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col gap-3 rounded-xl border border-border bg-background p-4 ring-2 ring-border/20 transition-colors hover:ring-primary/30"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-sm font-semibold">{stat.title}</h3>
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
-                  </div>
-                  <img
-                    src={stat.image}
-                    alt={stat.title}
-                    className="w-full rounded-lg border border-border bg-card object-contain"
-                  />
-                </Link>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="hackathons">
-        <BlurFade delay={BLUR_FADE_DELAY * 22}>
-          <HackathonsSection />
-        </BlurFade>
-      </section>
-      <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 23}>
-          <ContactSection />
-        </BlurFade>
-      </section>
-    </main>
-  );
+          <div className="hero-aside"><div className="hero-art"><img src="/irncyber-hero.svg" alt="Animated cybersecurity illustration with a terminal, shield, and lock" fetchPriority="high" /></div><div className="availability"><span className="status-dot" /><span><strong>Open to opportunities</strong><small>Freelance · internships · collaboration</small></span></div></div>
+        </section>
+
+        <section className="intro-band section-wrap" id="about"><div><span className="eyebrow">01 / ABOUT</span><h2>Practical by nature.<br />Curious by default.</h2></div><div className="intro-copy"><p>I’m a B.Tech Cyber Security student at Shri Vishwakarma Skill University and a freelance web designer/developer. I work across the front end, with a growing focus on security fundamentals and responsible practice.</p><p>I care about clear interfaces, mobile usability, and building a solid understanding of the systems behind the screen.</p><TerminalWidget /></div></section>
+
+        <section className="content-section section-wrap" id="projects"><div className="section-heading"><div><span className="eyebrow">02 / SELECTED WORK</span><h2>Projects with a purpose.</h2></div><p>Selected live work. Case study details and screenshots will be added as they are verified.</p></div><ProjectExplorer projects={projects} /></section>
+
+        <section className="content-section section-wrap" id="client-feedback"><div className="section-heading"><div><span className="eyebrow">CLIENT FEEDBACK</span><h2>Results, with permission.</h2></div><p>Client comments belong to the people who gave them. Nothing is quoted without approval.</p></div><div className="feedback-grid">{clientFeedback.map((slot) => <article className="feedback-slot" key={slot.client}><span className="eyebrow">CLIENT WORK</span><h3>{slot.client}</h3>{slot.quote ? <blockquote>“{slot.quote}”</blockquote> : <p>[TODO: add an approved testimonial, attribution, and permission.]</p>}<small>{slot.attribution ?? slot.status}</small></article>)}</div></section>
+
+        <section className="security-section section-wrap" id="security"><div className="section-heading"><div><span className="eyebrow">03 / SECURITY</span><h2>Learning in public.<br />Working responsibly.</h2></div><p>Security is a practice built on patience, evidence, and respect for scope. I only test systems where I have permission.</p></div><div className="security-grid"><div className="security-principle"><ShieldCheck size={23} /><h3>Responsible disclosure</h3><p>Any security testing I do is limited to explicitly authorized environments. Findings are shared privately with the relevant owner and handled with care.</p><span className="security-note">No sensitive data or unverified rankings published.</span></div><div className="security-links"><span className="eyebrow">TRAINING & RESEARCH PROFILES</span>{[["TryHackMe", "https://tryhackme.com/p/IRNCyber"], ["Hack The Box", "https://app.hackthebox.com/profile/2313221"], ["HackerOne", "https://hackerone.com/IRNCyber"], ["Bugcrowd", "https://bugcrowd.com/IRNCyber"]].map(([name, href]) => <a key={name} href={href} target="_blank" rel="noreferrer"><span>{name}<small>Profile · activity not independently verified</small></span><ArrowUpRight size={16} /></a>)}<p className="todo-note">[TODO: add verified lab progress, CTF writeups, and disclosure links.]</p></div></div></section>
+
+        <FlashCards />
+
+        <section className="content-section section-wrap" id="skills"><div className="section-heading"><div><span className="eyebrow">04 / TOOLKIT</span><h2>A focused toolkit.</h2></div><p>Grouped by where I use them. Levels describe current comfort, not certification or years of experience.</p></div><div className="skill-grid">{skillGroups.map((group) => <article className="skill-card" key={group.category}><h3>{group.category}</h3><ul>{group.items.map((skill) => <li key={skill.name}><span>{skill.name}</span><span className={`skill-level level-${skill.level.toLowerCase()}`}>{skill.level}</span></li>)}</ul></article>)}</div><div className="skill-legend"><span><i className="legend-dot core" /> Core</span><span><i className="legend-dot comfortable" /> Comfortable</span><span><i className="legend-dot learning" /> Learning</span></div></section>
+
+        <section className="timeline-section section-wrap" id="experience"><div className="section-heading"><div><span className="eyebrow">05 / EXPERIENCE</span><h2>Experience & education.</h2></div><p>A straightforward record of client work and study.</p></div><div className="timeline"><article className="timeline-entry"><span className="timeline-marker" /><div className="timeline-meta"><span>Oct 2024 — Present</span><span>Freelance</span></div><h3>Web Designer & Developer</h3><p>Design and develop responsive websites with HTML, CSS, JavaScript, React, and TypeScript. Work with clients to shape requirements into clear, usable web experiences.</p><span className="todo-note">[TODO: add project-specific contributions and outcomes.]</span></article><article className="timeline-entry" id="education"><span className="timeline-marker" /><div className="timeline-meta"><span>Aug 2026 — Jun 2031</span><span>Gurugram, India</span></div><h3>B.Tech, Cyber Security</h3><p><a className="inline-link" href="https://www.svsu.ac.in" target="_blank" rel="noreferrer">Shri Vishwakarma Skill University <ArrowUpRight size={13} /></a></p><span className="todo-note">[TODO: confirm these dates; the supplied profile lists a future start date and the end date may be a typo.]</span></article><article className="timeline-entry"><span className="timeline-marker" /><div className="timeline-meta"><span>May 2025 — May 2026</span><span>Faridabad, India</span></div><h3>Higher Secondary, PCM</h3><p>Torch Bearer Convent School</p></article></div></section>
+
+        <section className="content-section section-wrap" id="certifications"><div className="section-heading"><div><span className="eyebrow">06 / CERTIFICATIONS</span><h2>Relevant credentials.</h2></div><p>Selected from the supplied resume. Titles and levels are reproduced as provided.</p></div><div className="cert-featured">{certifications.slice(0, 8).map((cert) => <article key={cert.title}><span className="cert-check"><Check size={14} /></span><div><h3>{cert.title}</h3><p>{cert.category}{cert.level ? ` · ${cert.level}` : ""}</p></div></article>)}</div><CertificationArchive items={certifications} /></section>
+
+        <section className="github-section section-wrap" id="github"><div className="section-heading"><div><span className="eyebrow">07 / OPEN SOURCE</span><h2>Activity, directly from GitHub.</h2></div><a className="text-link" href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">View profile <ArrowUpRight size={15} /></a></div><div className="github-panel"><div className="github-panel-head"><span><Github size={17} /> github.com/IRNCyber</span><span className="mono">CONTRIBUTIONS</span></div><img src="https://ghchart.rshah.org/19d3b5/IRNCyber" alt="GitHub contribution activity for IRNCyber" loading="lazy" /><p className="muted">Contribution graph provided by GitHub activity visualization. <a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">Open GitHub profile <ArrowUpRight size={12} /></a></p><div className="github-fallback"><Github size={20} /><span>If the graph is unavailable, visit the profile for current repositories and activity.</span><a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div></div><GitHubLiveDetails /><p className="todo-note">[TODO: choose repositories to highlight as pinned work.]</p></section>
+
+        <section className="resume-section section-wrap" id="resume"><div className="section-heading"><div><span className="eyebrow">08 / RESUME</span><h2>More detail, in one page.</h2></div><a className="button button-secondary" href="/Resume.pdf" download>Download resume <ArrowUpRight size={15} /></a></div><div className="resume-preview"><iframe src="/Resume.pdf#toolbar=0&navpanes=0" title="Preview of Rohan Naagar’s resume" loading="lazy" /><p>If the inline preview does not load, <a href="/Resume.pdf">open the PDF</a>.</p></div></section>
+
+        <section className="contact-section section-wrap" id="contact"><div><span className="eyebrow">09 / CONTACT</span><h2>Have a project<br />or opportunity?</h2><p>For freelance web work, internships, and thoughtful collaborations, send me a note.</p><div className="contact-actions"><a className="button button-primary" href="mailto:rohannaagar666@gmail.com">Email me <ArrowUpRight size={15} /></a><CopyEmailButton /></div><p className="muted">A scheduling link can be added here when available.</p></div><div className="contact-card"><span className="eyebrow">GET IN TOUCH</span><a className="contact-email" href="mailto:rohannaagar666@gmail.com">rohannaagar666@gmail.com <ArrowUpRight size={15} /></a><span className="contact-location">Gurugram, Haryana, India</span><div className="contact-socials">{socials.map(({ label, href, icon: Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer"><Icon size={16} />{label}</a>)}</div><div className="contact-placeholder">[TODO: add a Formspree/Web3Forms form ID and booking URL to enable form submission and call scheduling.]</div></div></section>
+      </main>
+      <footer className="site-footer"><Link href="/" className="wordmark"><img className="wordmark-icon" src="/irncyber-mark.svg" alt="" aria-hidden="true" /><span>IRNCyber<span className="wordmark-dot">.</span></span></Link><span>Built with care in Gurugram, India.</span><a href="#top">Back to top ↑</a></footer>
+    </div>
+  </>;
 }

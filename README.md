@@ -1,80 +1,60 @@
-<div align="center">
-<h1>Rohan Naagar - Portfolio</h1>
-<p>CS Student | Software Developer | Python • Java • React • TypeScript | Web Developer(Certified) | AI Enthusiast</p>
-</div>
+# IRNCyber Portfolio
 
-# About Me
+A dark-first, responsive portfolio for Rohan Naagar, built with Next.js App Router, TypeScript, Tailwind CSS, and MDX. The site is configured for a static export to GitHub Pages.
 
-I'm a passionate CS student and software developer based in Greater Delhi Area. I specialize in full-stack web development with expertise in Python, Java, React, and TypeScript. As a certified web developer and AI enthusiast, I'm committed to building high-quality web applications and continually learning new technologies.
+## Design and sitemap
 
-## Skills
+The visual system uses a near-black and slate foundation, restrained teal accents, the existing Cabinet Grotesk display/text fonts, and a system monospace for terminal details. The layout moves from a concise value proposition to case studies, security practice, skills, experience, certifications, GitHub activity, resume, and contact.
 
-**Programming Languages:** Python, Java, JavaScript, TypeScript, HTML, CSS
-**Frontend:** React, TypeScript
-**Backend:** Node.js, Firebase
-**Specializations:** Web Development, Full Stack Development, AI
+Routes: `/` portfolio · `/blog/` article index · `/blog/[slug]/` article · `/rss.xml` feed · `/sitemap.xml` sitemap · `/robots.txt` crawler rules.
 
-## Languages
+## Project structure
 
-- English (Full Professional)
-- Hindi (Native or Bilingual)
-- Russian (Elementary)
+```text
+src/
+  app/                  App Router pages, metadata, sitemap, robots, RSS
+  components/            Reusable portfolio interactions
+  data/                  Typed project, skill, certification, profile data
+  mdx-components.tsx     MDX rendering and heading anchors
+content/                 Blog posts in MDX
+public/                  Resume PDF, fonts, and static assets
+.github/workflows/       GitHub Pages build and deploy workflow
+```
 
-## Certifications
+## Run locally
 
-- AI for All
-- Understanding the Constitutional Values Certificate
-- Social Media Marketing Course
-- IoT Network Specialist Certificate
-- Solar Panel Installation Technician
+Requires Node.js 20 or newer.
 
-## Honors & Awards
+```bash
+npm ci
+npm run dev
+```
 
-- Kaushal Mitra
+Open `http://localhost:3000`. Update typed content in `src/data/projects.ts`, `src/data/skills.ts`, `src/data/certifications.ts`, and `src/data/resume.tsx`. Add blog posts as `.mdx` files under `content/`; frontmatter supports `title`, `publishedAt`, `summary`, and optional `tags`, `author`, and `image`.
 
-# Portfolio Features
+## Build and publish
 
-- Setup only takes a few minutes by editing the [single config file](./src/data/resume.tsx)
-- Built using Next.js 14, React, Typescript, Shadcn/UI, TailwindCSS, Framer Motion, Magic UI
-- Includes a blog
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+```bash
+npm run build
+```
 
-# Getting Started Locally
+Next.js writes the static site to `out/`. Push to the `main` branch to trigger `.github/workflows/deploy.yml`. In GitHub, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. The custom domain repository name (`IRNCyber.github.io`) does not need a `basePath`.
 
-1. Clone this repository to your local machine:
+## Content to provide
 
-   ```bash
-   git clone https://github.com/IRNCyber/IRNCyber
-   ```
+- Project screenshots and verified descriptions of your role, stack, and outcomes.
+- Confirmed B.Tech start/end dates (currently shown as August 2026–June 2031).
+- Verified CTF participation, writeups, lab progress, and security platform stats, if you want them shown.
+- The repositories you want featured as pinned work.
+- Client-approved testimonials or measurable results.
+- A Formspree/Web3Forms form ID and a Calendly/Cal.com booking URL.
+- Certification issuer links or credential IDs, where available.
+- Confirm whether internship availability wording is current.
 
-2. Move to the cloned directory
+## Good next steps after launch
 
-   ```bash
-   cd IRNCyber
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-4. Start the local Server:
-
-   ```bash
-   pnpm dev
-   ```
-
-5. Open the [Config file](./src/data/resume.tsx) and make changes
-
-# Contact
-
-- Email: rohannaagar666@gmail.com
-- Phone: +919466386495
-- GitHub: https://github.com/IRNCyber
-- LinkedIn: https://www.linkedin.com/in/rohannaagar666
-
-# License
-
-Licensed under the [MIT license](https://github.com/IRNCyber/IRNCyber/blob/main/LICENSE.md).
+1. Add approved screenshots and complete the project case studies.
+2. Publish a real, permission-safe CTF write-up and link its challenge context.
+3. Add a working form and call-booking link.
+4. Add client-approved testimonials and concrete outcomes.
+5. Review analytics needs and choose a privacy-friendly provider only if useful.

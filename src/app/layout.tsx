@@ -1,7 +1,4 @@
-import Navbar from "@/components/navbar";
-import ThemeBackground from "@/components/theme-background";
 import { ThemeProvider } from "@/components/theme-provider";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -17,12 +14,6 @@ const cabinetGrotesk = localFont({
 const clashDisplay = localFont({
   src: "../../public/fonts/ClashDisplay-Semibold.ttf",
   variable: "--font-display",
-  display: "swap",
-});
-
-const cabinetMono = localFont({
-  src: "../../public/fonts/CabinetGrotesk-Medium.ttf",
-  variable: "--font-mono",
   display: "swap",
 });
 
@@ -56,10 +47,6 @@ export const metadata: Metadata = {
     title: `${DATA.name}`,
     card: "summary_large_image",
   },
-  verification: {
-    google: "",
-    yandex: "",
-  },
 };
 
 export default function RootLayout({
@@ -69,22 +56,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-3046429639792360" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3046429639792360"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased relative",
           cabinetGrotesk.variable,
           clashDisplay.variable,
-          cabinetMono.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
-          <TooltipProvider delayDuration={0}>
-            <ThemeBackground />
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-10 pb-24 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
-              {children}
-            </div>
-            <Navbar />
-          </TooltipProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: DATA.name,
+            url: DATA.url,
+            jobTitle: "Cybersecurity student and freelance web developer",
+            address: { "@type": "PostalAddress", addressLocality: "Gurugram", addressCountry: "IN" },
+            email: `mailto:${DATA.contact.email}`,
+            sameAs: ["https://github.com/IRNCyber", "https://www.linkedin.com/in/rohannaagar666"],
+          }).replace(/</g, "\\u003c") }} />
+          {children}
         </ThemeProvider>
       </body>
     </html>

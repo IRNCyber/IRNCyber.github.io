@@ -1,6 +1,6 @@
 import { CodeBlock } from "@/components/mdx/code-block";
 import { MediaContainer } from "@/components/mdx/media-container";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 
 type CodeProps = ComponentProps<"code"> & {
   "data-language"?: string;
@@ -45,5 +45,12 @@ export const mdxComponents = {
       </code>
     );
   },
+  h2: ({ children, ...props }: ComponentProps<"h2">) => <h2 id={headingId(children)} {...props}>{children}</h2>,
+  h3: ({ children, ...props }: ComponentProps<"h3">) => <h3 id={headingId(children)} {...props}>{children}</h3>,
 } as const;
+
+function headingId(children: ReactNode) {
+  const text = Array.isArray(children) ? children.join(" ") : String(children ?? "");
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 

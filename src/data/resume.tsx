@@ -86,22 +86,16 @@ const schoolLogoUrl = new URL(
 export const DATA = {
   name: "Rohan Naagar",
   initials: "RN",
-  url: "https://github.com/IRNCyber",
+  url: "https://irncyber.github.io",
   location: "Gurugram, Haryana, India",
   locationLink: "https://www.google.com/maps/place/Gurugram",
   description:
-    "CS student, freelance web designer, software developer, and AI enthusiast focused on practical cybersecurity and modern web experiences.",
-  summary: `I am Rohan Naagar, a CS student and freelance web designer/software developer based in the Greater Delhi region.
+    "Rohan Naagar is a cybersecurity student and freelance web designer/developer in Gurugram, India, building responsive web experiences and learning security through responsible practice.",
+  summary: `I am Rohan Naagar, a B.Tech Cyber Security student at Shri Vishwakarma Skill University and a freelance web designer/developer based in Gurugram, India.
 
-I enjoy building responsive websites, learning fast, and turning ideas into practical products with **HTML, CSS, JavaScript, React, TypeScript, Python, and Java**.
+I build responsive websites and web applications with HTML, CSS, JavaScript, React, and TypeScript. Alongside client work, I am developing a foundation in cybersecurity and responsible security practice.
 
-Current focus areas from the provided profile:
-
-- Cybersecurity and ethical hacking
-- Artificial Intelligence, AGI, Machine Learning, Deep Learning, NLP, and LLMs
-- Web development with strong mobile responsiveness and cross-browser compatibility
-
-I am looking to contribute with commitment, consistency, and continuous learning while growing alongside the teams and clients I work with.`,
+I value clear communication, careful implementation, and interfaces that work well across screen sizes.`,
   avatarUrl: profileImageUrl,
   skills: [
     { name: "Python", icon: Python },
@@ -153,7 +147,6 @@ I am looking to contribute with commitment, consistency, and continuous learning
   ],
   contact: {
     email: "rohannaagar666@gmail.com",
-    tel: "+919466386495",
     social: {
       GitHub: {
         name: "GitHub",
@@ -165,12 +158,6 @@ I am looking to contribute with commitment, consistency, and continuous learning
         name: "LinkedIn",
         url: "https://www.linkedin.com/in/rohannaagar666",
         icon: Icons.linkedin,
-        navbar: true,
-      },
-      WhatsApp: {
-        name: "WhatsApp",
-        url: "https://wa.me/919466386495",
-        icon: Icons.whatsapp,
         navbar: true,
       },
       X: {
@@ -234,7 +221,7 @@ I am looking to contribute with commitment, consistency, and continuous learning
   education: [
     {
       school: "Shri Vishwakarma Skill University",
-      href: "svsu.ac.in",
+      href: "https://www.svsu.ac.in",
       logoUrl: collegeLogoUrl,
       degree: "Btech Cyber Security",
       start: "August 2026",
@@ -282,7 +269,7 @@ I am looking to contribute with commitment, consistency, and continuous learning
       title: "ZINCOR",
       href: "https://zincor.github.io",
       description:
-        "A personal build space tied to the provided assets, used to showcase experiments and ongoing web initiatives.",
+        "A live web property associated with IRNCyber’s independent work. Project purpose and contribution details need confirmation.",
       dates: "Active",
       technologies: ["Web Development", "Experiments", "Frontend"],
       links: [
@@ -297,7 +284,7 @@ I am looking to contribute with commitment, consistency, and continuous learning
       title: "Tactical Zero",
       href: "https://tacticalzero.github.io",
       description:
-        "A public-facing initiative listed in the assets, aligned with security, systems thinking, and technical publishing.",
+        "A security-focused web project published under the Tactical Zero name. Project purpose and contribution details need confirmation.",
       dates: "Active",
       technologies: ["Security", "Systems", "Publishing"],
       links: [
@@ -312,7 +299,7 @@ I am looking to contribute with commitment, consistency, and continuous learning
       title: "City Tech Collab",
       href: "https://citytechcollab.github.io",
       description:
-        "Collaboration-oriented site referenced in the assets, representing community-facing technical work and digital initiatives.",
+        "A live site for a technology collaboration initiative. Project purpose and contribution details need confirmation.",
       dates: "Active",
       technologies: ["Community", "Collaboration", "Web"],
       links: [
@@ -548,11 +535,6 @@ I am looking to contribute with commitment, consistency, and continuous learning
     {
       title: "Telegram",
       href: "https://t.me/IRNCyber",
-      category: "Social & Contact",
-    },
-    {
-      title: "WhatsApp",
-      href: "https://wa.me/919466386495",
       category: "Social & Contact",
     },
     {

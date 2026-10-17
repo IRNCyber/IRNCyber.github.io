@@ -6,11 +6,6 @@ import { ArrowUpRight } from "lucide-react";
 export default function ContactSection() {
   const quickLinks = [
     {
-      label: "WhatsApp",
-      href: DATA.contact.social.WhatsApp.url,
-      detail: "Fastest way to reach me",
-    },
-    {
       label: "X",
       href: DATA.contact.social.X.url,
       detail: "Follow updates and thoughts",
@@ -58,15 +53,6 @@ export default function ContactSection() {
           </Link>{" "}
           or on{" "}
           <Link
-            href={DATA.contact.social.WhatsApp.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-          >
-            WhatsApp
-          </Link>
-          {" "}and{" "}
-          <Link
             href={DATA.contact.social.X.url}
             target="_blank"
             rel="noopener noreferrer"
@@ -74,7 +60,7 @@ export default function ContactSection() {
           >
             X
           </Link>
-          . You can also review the provided{" "}
+          . You can also review my{" "}
           <Link
             href="/Resume.pdf"
             target="_blank"
@@ -83,15 +69,6 @@ export default function ContactSection() {
           >
             resume
           </Link>{" "}
-          and{" "}
-          <Link
-            href="/Profile.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-          >
-            profile
-          </Link>
           .
         </p>
         <div className="grid w-full max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
