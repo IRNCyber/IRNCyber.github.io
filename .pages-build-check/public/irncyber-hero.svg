@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" role="img" aria-labelledby="t d" xmlns:c2pa="http://c2pa.org/manifest">
+  <title id="t">IRNCyber hero illustration</title>
+  <desc id="d">A terminal window typing security commands next to an animated shield with a lock, orbiting nodes and a scanning line.</desc>
+
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00ff9d"/>
+      <stop offset="1" stop-color="#00c2ff"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="75%" cy="42%" r="55%">
+      <stop offset="0" stop-color="#00c2ff" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#0b0f14" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00ff9d" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#00ff9d" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#00ff9d" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1b2733" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="term"><rect x="50" y="110" width="430" height="300" rx="14"/></clipPath>
+  </defs>
+
+  <style>
+    .mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .line { opacity: 0; animation: show .01s forwards; }
+    .l1 { animation-delay: .4s } .l2 { animation-delay: 1.2s } .l3 { animation-delay: 2s }
+    .l4 { animation-delay: 2.8s } .l5 { animation-delay: 3.6s } .l6 { animation-delay: 4.4s }
+    .cursor { animation: blink 1s steps(1) infinite; }
+    .scan { animation: sweep 4s linear infinite; }
+    .spin { animation: rot 24s linear infinite; }
+    .spin-rev { animation: rot 36s linear infinite reverse; }
+    .pulse { animation: pulse 3s ease-in-out infinite; transform-origin: 0 0; }
+    .float { animation: float 5s ease-in-out infinite; }
+    .float2 { animation: float 6.5s ease-in-out infinite reverse; }
+    .hex { animation: drift 8s ease-in-out infinite; }
+    @keyframes show { to { opacity: 1 } }
+    @keyframes blink { 50% { opacity: 0 } }
+    @keyframes sweep { from { transform: translateX(-120px) } to { transform: translateX(500px) } }
+    @keyframes rot { to { transform: rotate(360deg) } }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity: .55 } 50% { transform: scale(1.12); opacity: .1 } }
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+    @keyframes drift { 0%,100% { opacity: .15 } 50% { opacity: .5 } }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+      .line { opacity: 1; }
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0b0f14"/>
+  <rect width="800" height="600" fill="url(#grid)" opacity=".55"/>
+  <rect width="800" height="600" fill="url(#bgGlow)"/>
+
+  <!-- Drifting hex text -->
+  <g class="mono" font-size="11" fill="#00ff9d">
+    <text class="hex" x="40" y="60">0x7F 45 4C 46</text>
+    <text class="hex" x="330" y="48" style="animation-delay:1.5s">SYN → ACK</text>
+    <text class="hex" x="560" y="90" style="animation-delay:3s">AES-256-GCM</text>
+    <text class="hex" x="70" y="560" style="animation-delay:2s">sudo ./harden.sh</text>
+    <text class="hex" x="600" y="560" style="animation-delay:4s">TLS 1.3 ✓</text>
+  </g>
+
+  <!-- Circuit traces -->
+  <g fill="none" stroke="url(#accent)" stroke-width="1.5" opacity=".5">
+    <path d="M480 260 H520 L540 240 H575"/>
+    <path d="M480 300 H530 L550 320 H570"/>
+    <path d="M480 340 H505 L520 360 H560"/>
+  </g>
+  <g fill="#00ff9d" opacity=".8">
+    <circle cx="480" cy="260" r="3"/><circle cx="480" cy="300" r="3"/><circle cx="480" cy="340" r="3"/>
+  </g>
+
+  <!-- Terminal -->
+  <g>
+    <rect x="50" y="110" width="430" height="300" rx="14" fill="#0f1620" stroke="#22303f" stroke-width="1.5"/>
+    <path d="M50 124a14 14 0 0 1 14-14H466a14 14 0 0 1 14 14V146H50Z" fill="#162130"/>
+    <circle cx="74" cy="128" r="6" fill="#ff5f56"/>
+    <circle cx="96" cy="128" r="6" fill="#ffbd2e"/>
+    <circle cx="118" cy="128" r="6" fill="#27c93f"/>
+    <text class="mono" x="265" y="132" font-size="12" fill="#6b7f95" text-anchor="middle">rohan@irncyber: ~</text>
+
+    <g class="mono" font-size="15" clip-path="url(#term)">
+      <g class="line l1"><text x="74" y="184" fill="#00ff9d">$</text><text x="92" y="184" fill="#e6edf3">whoami</text></g>
+      <g class="line l2"><text x="74" y="208" fill="#8fb3d9">Rohan Naagar  |  IRNCyber</text></g>
+      <g class="line l3"><text x="74" y="244" fill="#00ff9d">$</text><text x="92" y="244" fill="#e6edf3">cat focus.txt</text></g>
+      <g class="line l4"><text x="74" y="268" fill="#8fb3d9">Cybersecurity · Web · AI</text></g>
+      <g class="line l5"><text x="74" y="304" fill="#00ff9d">$</text><text x="92" y="304" fill="#e6edf3">./status --availability</text></g>
+      <g class="line l6">
+        <text x="74" y="328" fill="#27c93f">● open for freelance &amp; collabs</text>
+        <text x="74" y="364" fill="#00ff9d">$</text>
+        <rect class="cursor" x="92" y="351" width="9" height="17" fill="#00ff9d"/>
+      </g>
+      <!-- scan line -->
+      <rect class="scan" x="50" y="146" width="120" height="264" fill="url(#scan)"/>
+    </g>
+  </g>
+
+  <!-- Shield + orbit -->
+  <g transform="translate(640 260)">
+    <circle class="pulse" r="105" fill="none" stroke="#00ff9d" stroke-width="2"/>
+
+    <g class="spin">
+      <circle r="140" fill="none" stroke="#00c2ff" stroke-width="1.2" stroke-dasharray="3 9" opacity=".7"/>
+      <circle cx="140" cy="0" r="6" fill="#00c2ff" filter="url(#glow)"/>
+      <circle cx="-99" cy="99" r="4" fill="#00ff9d" filter="url(#glow)"/>
+    </g>
+    <g class="spin-rev">
+      <circle r="165" fill="none" stroke="#00ff9d" stroke-width="1" stroke-dasharray="1 12" opacity=".5"/>
+      <circle cx="0" cy="-165" r="5" fill="#00ff9d" filter="url(#glow)"/>
+      <circle cx="117" cy="117" r="4" fill="#00c2ff" filter="url(#glow)"/>
+    </g>
+
+    <g class="float">
+      <path d="M0-90L72-60V10C72 60 36 92 0 110C-36 92-72 60-72 10V-60Z"
+            fill="#0f1620" stroke="url(#accent)" stroke-width="4" filter="url(#glow)"/>
+      <path d="M0-72L56-48V8C56 48 28 74 0 90C-28 74-56 48-56 8V-48Z"
+            fill="none" stroke="#00ff9d" stroke-opacity=".25" stroke-width="1.5"/>
+      <!-- lock -->
+      <path d="M-14-6V-22a14 14 0 0 1 28 0V-6" fill="none" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+      <rect x="-24" y="-6" width="48" height="40" rx="7" fill="url(#accent)"/>
+      <circle cx="0" cy="12" r="5" fill="#0b0f14"/>
+      <rect x="-2.5" y="14" width="5" height="12" rx="2" fill="#0b0f14"/>
+    </g>
+  </g>
+
+  <!-- Floating chips -->
+  <g class="mono" font-size="13">
+    <g class="float" transform="translate(500 450)">
+      <rect width="130" height="34" rx="17" fill="#0f1620" stroke="#00ff9d" stroke-opacity=".6"/>
+      <circle cx="18" cy="17" r="4" fill="#00ff9d"/>
+      <text x="32" y="22" fill="#e6edf3">Cybersecurity</text>
+    </g>
+    <g class="float2" transform="translate(645 480)">
+      <rect width="70" height="34" rx="17" fill="#0f1620" stroke="#00c2ff" stroke-opacity=".6"/>
+      <circle cx="18" cy="17" r="4" fill="#00c2ff"/>
+      <text x="32" y="22" fill="#e6edf3">Web</text>
+    </g>
+    <g class="float" transform="translate(560 500)" style="animation-delay:1s">
+      <rect width="60" height="34" rx="17" fill="#0f1620" stroke="#8fb3d9" stroke-opacity=".6"/>
+      <circle cx="18" cy="17" r="4" fill="#8fb3d9"/>
+      <text x="30" y="22" fill="#e6edf3">AI</text>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <text class="mono" x="50" y="470" font-size="40" font-weight="700" fill="url(#accent)">IRNCyber</text>
+  <text class="mono" x="50" y="498" font-size="14" fill="#6b7f95">secure by design · built for the modern web</text>
+</svg>

@@ -1,229 +1,29 @@
- 
-/* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
 import { allPosts } from "content-collections";
 
-export const revalidate = false;
-
-export const alt = "Blog";
-export const size = {
-    width: 1200,
-    height: 630,
-};
+export const dynamic = "force-static";
+export const alt = "IRNCyber blog post";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
 
 export function generateStaticParams() {
-    return allPosts.map((post) => ({
-        slug: post._meta.path.replace(/\.mdx$/, ""),
-    }));
+  return allPosts.map((post) => ({ slug: post._meta.path.replace(/\.mdx$/, "") }));
 }
 
-const getFontData = async () => {
-    try {
-        const [cabinetGrotesk, clashDisplay] = await Promise.all([
-            fetch(
-                new URL(
-                    "../../../../public/fonts/CabinetGrotesk-Medium.ttf",
-                    import.meta.url
-                ).toString()
-            ).then((res) => res.arrayBuffer()),
-            fetch(
-                new URL(
-                    "../../../../public/fonts/ClashDisplay-Semibold.ttf",
-                    import.meta.url
-                ).toString()
-            ).then((res) => res.arrayBuffer()),
-        ]);
-        return { cabinetGrotesk, clashDisplay };
-    } catch (error) {
-        console.error("Failed to load fonts:", error);
-        return null;
-    }
-};
-
-const styles = {
-    outerWrapper: {
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "#ffffff",
-        position: "relative",
-    },
-    middleWrapper: {
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "#ffffff",
-        position: "relative",
-        padding: "40px",
-    },
-    wrapper: {
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "#fafafa",
-        position: "relative",
-        padding: "40px",
-        border: "1px solid #e5e5e5",
-        borderRadius: "12px",
-    },
-    imageSection: {
-        position: "absolute",
-        top: "40px",
-        left: "40px",
-        display: "flex",
-        alignItems: "center",
-        zIndex: "2",
-    },
-    mainContainer: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-end",
-        height: "100%",
-        width: "100%",
-        position: "relative",
-        zIndex: "1",
-    },
-    image: {
-        width: "140px",
-        height: "140px",
-        borderRadius: "24px",
-        border: "4px solid #e5e5e5",
-        objectFit: "cover",
-    },
-    title: {
-        fontFamily: "Clash Display",
-        fontSize: "48px",
-        fontWeight: "600",
-        lineHeight: "1.1",
-        textAlign: "left",
-        color: "#000000",
-        marginBottom: "16px",
-        letterSpacing: "-0.02em",
-        maxWidth: "900px",
-    },
-    description: {
-        fontSize: "20px",
-        fontWeight: "400",
-        lineHeight: "1.5",
-        textAlign: "left",
-        maxWidth: "800px",
-        color: "#404040",
-        marginBottom: "16px",
-        textWrap: "balance",
-    },
-    date: {
-        fontSize: "16px",
-        fontWeight: "400",
-        lineHeight: "1.5",
-        textAlign: "left",
-        color: "#666666",
-        marginBottom: "32px",
-    },
-} as const;
-
-export default async function Image({
-    params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
-    try {
-        const fontData = await getFontData();
-        const { slug } = await params;
-        const post = allPosts.find((p) => p._meta.path.replace(/\.mdx$/, "") === slug);
-        if (!post) {
-            return new ImageResponse(
-                (
-                    <div style={styles.outerWrapper}>
-                        <div style={styles.middleWrapper}>
-                            <div style={styles.wrapper}>
-                                <div style={styles.mainContainer}>
-                                    <div style={styles.title}>Post Not Found</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ),
-                {
-                    ...size,
-                    ...(fontData && {
-                        fonts: [
-                            {
-                                name: "Clash Display",
-                                data: fontData.clashDisplay,
-                                weight: 600,
-                                style: "normal",
-                            },
-                        ],
-                    }),
-                }
-            );
-        }
-
-        const title = post.title;
-        const description = post.summary || "";
-        const publishedDate = post.publishedAt
-            ? new Date(post.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                timeZone: "UTC",
-            })
-            : "";
-
-        return new ImageResponse(
-            (
-                <div style={styles.outerWrapper}>
-                    <div style={styles.middleWrapper}>
-                        <div style={styles.wrapper}>
-                            <div style={styles.mainContainer}>
-                                <div style={styles.title}>{title}</div>
-                                {description && (
-                                    <div style={styles.description}>{description}</div>
-                                )}
-                                {publishedDate && <div style={styles.date}>{publishedDate}</div>}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ),
-            {
-                ...size,
-                ...(fontData && {
-                    fonts: [
-                        {
-                            name: "Cabinet Grotesk",
-                            data: fontData.cabinetGrotesk,
-                            weight: 400,
-                            style: "normal",
-                        },
-                        {
-                            name: "Cabinet Grotesk",
-                            data: fontData.cabinetGrotesk,
-                            weight: 700,
-                            style: "normal",
-                        },
-                        {
-                            name: "Clash Display",
-                            data: fontData.clashDisplay,
-                            weight: 600,
-                            style: "normal",
-                        },
-                    ],
-                }),
-            }
-        );
-    } catch (error) {
-        console.error("Error generating OpenGraph image:", error);
-        return new Response(
-            `Failed to generate image: ${error instanceof Error ? error.message : "Unknown error"}`,
-            {
-                status: 500,
-            }
-        );
-    }
+export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = allPosts.find((item) => item._meta.path.replace(/\.mdx$/, "") === slug);
+  const title = post?.title ?? "IRNCyber notes";
+  const summary = post?.summary ?? "Cybersecurity and web development.";
+  return new ImageResponse(
+    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 72, background: "#080b10", color: "#e9eef2", fontFamily: "Arial, sans-serif", backgroundImage: "linear-gradient(90deg, rgba(32,42,52,.42) 1px, transparent 1px), linear-gradient(rgba(32,42,52,.42) 1px, transparent 1px)", backgroundSize: "72px 72px" }}>
+      <div style={{ color: "#19d3b5", fontSize: 24, letterSpacing: 4 }}>IRNCYBER · NOTES</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+        <div style={{ fontSize: 58, fontWeight: 700, letterSpacing: -2, lineHeight: 1.15 }}>{title}</div>
+        <div style={{ color: "#9aa8b5", fontSize: 24, lineHeight: 1.4 }}>{summary}</div>
+      </div>
+      <div style={{ color: "#71818c", fontSize: 20 }}>irncyber.github.io/blog</div>
+    </div>,
+    size,
+  );
 }
-

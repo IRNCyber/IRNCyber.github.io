@@ -1,0 +1,29 @@
+---
+title: "Web Security Basics: A Safer Starting Point"
+publishedAt: "2026-10-16"
+author: "Rohan Naagar"
+summary: "A beginner-friendly checklist for reducing common web application risks through safer defaults and careful review."
+tags: ["Web Security", "Web Development", "Basics"]
+---
+
+## Treat input as untrusted
+
+Validate input at the boundary where it enters an application, and encode output for the context where it will be displayed. Validation and output encoding solve different problems; neither makes unsafe string concatenation a good query strategy.
+
+## Use parameterized database queries
+
+Pass user-controlled values as parameters rather than building a query by joining strings. Keep database permissions narrow so that a bug in one feature cannot automatically access every table or administrative operation.
+
+## Protect accounts and sessions
+
+Use a maintained authentication library where possible. Store passwords with a purpose-built password hashing function, use secure and HTTP-only session cookies, and require additional verification for sensitive account changes.
+
+## Set safe browser policies
+
+Use HTTPS, a restrictive Content Security Policy, and appropriate security headers. These controls reduce exposure, but they do not replace fixing the underlying cause of a vulnerability.
+
+## Test only with permission
+
+Use a local lab, a deliberately vulnerable training app, or a program that explicitly authorizes the testing you plan to perform. Record the scope and stop if a test could affect someone else's data or service.
+
+Security work is a process: understand the threat, choose a safe control, and verify that it behaves as intended.
