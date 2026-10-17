@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { allPosts } from "content-collections";
 
+export const dynamic = "force-static";
+
 const origin = "https://irncyber.github.io";
 
 export default function sitemap(): MetadataRoute.Sitemap {

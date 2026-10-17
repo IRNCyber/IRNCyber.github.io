@@ -2,9 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
 import { allPosts } from "content-collections";
-import { DATA } from "@/data/resume";
 
-export const runtime = "edge";
 export const revalidate = false;
 
 export const alt = "Blog";
@@ -12,6 +10,12 @@ export const size = {
     width: 1200,
     height: 630,
 };
+
+export function generateStaticParams() {
+    return allPosts.map((post) => ({
+        slug: post._meta.path.replace(/\.mdx$/, ""),
+    }));
+}
 
 const getFontData = async () => {
     try {
@@ -130,21 +134,12 @@ export default async function Image({
         const fontData = await getFontData();
         const { slug } = await params;
         const post = allPosts.find((p) => p._meta.path.replace(/\.mdx$/, "") === slug);
-        const imageUrl = DATA.avatarUrl
-            ? new URL(DATA.avatarUrl, DATA.url).toString()
-            : undefined;
-
         if (!post) {
             return new ImageResponse(
                 (
                     <div style={styles.outerWrapper}>
                         <div style={styles.middleWrapper}>
                             <div style={styles.wrapper}>
-                                {imageUrl && (
-                                    <div style={styles.imageSection}>
-                                        <img src={imageUrl} alt="Blog Post" style={styles.image} />
-                                    </div>
-                                )}
                                 <div style={styles.mainContainer}>
                                     <div style={styles.title}>Post Not Found</div>
                                 </div>
@@ -184,11 +179,6 @@ export default async function Image({
                 <div style={styles.outerWrapper}>
                     <div style={styles.middleWrapper}>
                         <div style={styles.wrapper}>
-                            {imageUrl && (
-                                <div style={styles.imageSection}>
-                                    <img src={imageUrl} alt={title} style={styles.image} />
-                                </div>
-                            )}
                             <div style={styles.mainContainer}>
                                 <div style={styles.title}>{title}</div>
                                 {description && (

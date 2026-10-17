@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
-import { DATA } from "@/data/resume";
 
-export const runtime = "edge";
 export const revalidate = false;
 export const alt = "Blog";
 export const size = {
@@ -110,20 +108,11 @@ export default async function Image() {
         const fontData = await getFontData();
         const title = "Blog";
         const description = "Thoughts on software development, life, and more.";
-        const imageUrl = DATA.avatarUrl
-            ? new URL(DATA.avatarUrl, DATA.url).toString()
-            : undefined;
-
         return new ImageResponse(
             (
                 <div style={styles.outerWrapper}>
                     <div style={styles.middleWrapper}>
                         <div style={styles.wrapper}>
-                            {imageUrl && (
-                                <div style={styles.imageSection}>
-                                    <img src={imageUrl} alt="Blog" style={styles.image} />
-                                </div>
-                            )}
                             <div style={styles.mainContainer}>
                                 <div style={styles.title}>{title}</div>
                                 {description && (
