@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build static site
-        run: npm run build
+        run: npm run build -- --webpack
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site artifact
