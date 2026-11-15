@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTheme } from "next-themes";
 import { useColorTheme } from "@/context/color-theme-context";
 
 interface WebIconProps {
@@ -9,7 +10,10 @@ interface WebIconProps {
 
 export function WebIcon({ className = "w-7 h-7" }: WebIconProps) {
   const { currentColor } = useColorTheme();
-  const hex = currentColor?.hex || "#19d3b5";
+  const { resolvedTheme } = useTheme();
+  const hex = resolvedTheme === "light"
+    ? currentColor?.lightHex || currentColor?.hex || "#2563eb"
+    : currentColor?.hex || "#19d3b5";
   const gradId = `web-icon-grad-${currentColor?.id || "default"}`;
   const filterId = `web-icon-glow-${currentColor?.id || "default"}`;
 

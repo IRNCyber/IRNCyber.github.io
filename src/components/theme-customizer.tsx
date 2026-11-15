@@ -8,7 +8,7 @@ import { useColorTheme, type ThemeColor } from "@/context/color-theme-context";
 export function ThemeCustomizer() {
   const [open, setOpen] = useState(false);
   const { currentColor, setColor, availableColors } = useColorTheme();
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Close menu on click outside
@@ -27,6 +27,9 @@ export function ThemeCustomizer() {
   }, [open]);
 
   const isDark = resolvedTheme === "dark";
+  const activeColor = isDark
+    ? currentColor.hex
+    : currentColor.lightHex ?? currentColor.hex;
 
   return (
     <div className="relative" ref={menuRef}>
@@ -42,7 +45,7 @@ export function ThemeCustomizer() {
       >
         <span
           className="w-2.5 h-2.5 rounded-full flex-shrink-0 transition-transform duration-200"
-          style={{ backgroundColor: currentColor.hex }}
+          style={{ backgroundColor: activeColor }}
         />
         <Palette className="w-3.5 h-3.5 text-zinc-400" />
       </button>

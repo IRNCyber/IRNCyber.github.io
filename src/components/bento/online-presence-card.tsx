@@ -26,8 +26,8 @@ const platforms = [
   },
   {
     name: "LinkedIn",
-    handle: "in/rohannaagar666",
-    href: "https://www.linkedin.com/in/rohannaagar666",
+    handle: "in/rohannaagar",
+    href: "https://www.linkedin.com/in/rohannaagar",
     icon: Linkedin,
   },
   {

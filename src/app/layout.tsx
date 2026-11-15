@@ -1,7 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { ColorThemeProvider } from "@/context/color-theme-context";
 import { DATA } from "@/data/resume";
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -69,7 +68,7 @@ export default function RootLayout({
               jobTitle: "Cybersecurity student and freelance web developer",
               address: { "@type": "PostalAddress", addressLocality: "Gurugram", addressCountry: "IN" },
               email: `mailto:${DATA.contact.email}`,
-              sameAs: ["https://github.com/IRNCyber", "https://www.linkedin.com/in/rohannaagar666"],
+              sameAs: ["https://github.com/IRNCyber", "https://www.linkedin.com/in/rohannaagar"],
             }).replace(/</g, "\\u003c") }} />
             {children}
           </ColorThemeProvider>

@@ -32,7 +32,7 @@ export function ProjectsCard() {
         tabIndex={0}
         role="region"
         aria-label="Recent live projects gallery"
-        className="flex gap-3 overflow-x-auto pb-8 pt-1 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#19d3b5]"
+        className="flex gap-3 overflow-x-auto pb-8 pt-1 no-scrollbar scroll-smooth snap-x snap-mandatory cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--primary)]"
       >
         {projects.map((project, idx) => (
           <a
@@ -40,7 +40,7 @@ export function ProjectsCard() {
             href={project.live || "#projects"}
             target={project.live ? "_blank" : undefined}
             rel={project.live ? "noopener noreferrer" : undefined}
-            className="group/thumb snap-center flex-shrink-0 w-[140px] h-[140px] rounded-xl bg-[#141922] border border-white/[0.08] hover:border-[#19d3b5]/60 flex flex-col justify-between p-3 transition-all duration-300 hover:scale-[1.03] overflow-hidden relative"
+            className="group/thumb snap-center flex-shrink-0 w-[140px] h-[140px] rounded-xl bg-[#141922] border border-white/[0.08] hover:border-[var(--primary)]/60 flex flex-col justify-between p-3 transition-all duration-300 hover:scale-[1.03] overflow-hidden relative"
           >
             {/* Top window dots */}
             <div className="flex items-center justify-between">
@@ -49,7 +49,7 @@ export function ProjectsCard() {
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500/70" />
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/70" />
               </div>
-              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover/thumb:text-[#19d3b5] transition-colors" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover/thumb:text-[var(--primary)] transition-colors" />
             </div>
 
             {/* Thumbnail graphic with subtle glow */}
@@ -78,10 +78,10 @@ export function ProjectsCard() {
       <div className="absolute inset-x-0 bottom-3 flex justify-center z-20 pointer-events-none">
         <a
           href="#projects"
-          className="pointer-events-auto inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--primary)] text-black font-semibold text-xs shadow-lg hover:opacity-90 hover:scale-105 active:scale-95 transition-all duration-200"
+          className="pointer-events-auto inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold text-xs shadow-lg hover:opacity-90 hover:scale-105 active:scale-95 transition-all duration-200"
         >
           <span>View Works</span>
-          <Sparkles className="w-3 h-3 text-black" />
+          <Sparkles className="w-3 h-3 text-[var(--primary-foreground)]" />
         </a>
       </div>
     </BentoCardFrame>

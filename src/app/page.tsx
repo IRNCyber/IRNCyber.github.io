@@ -13,6 +13,7 @@ import { WebIcon } from "@/components/web-icon";
 import {
   AmbientBackground,
   CommandPalette,
+  FlashCards,
   ProjectExplorer,
   ScrollProgress,
 } from "@/components/portfolio-interactions";
@@ -115,6 +116,10 @@ export default function Page() {
             <ProjectExplorer projects={projects} />
           </section>
 
+          <div className="border-t border-white/[0.08]">
+            <FlashCards />
+          </div>
+
           {/* New Section: SVSU Teams (Homelanders & Techvengers) */}
           <div className="border-t border-white/[0.08]">
             <SvsuTeamsSection />
@@ -141,7 +146,6 @@ export default function Page() {
           </div>
         </main>
 
-        {/* Footer */}
         <footer className="flex flex-col sm:flex-row items-center justify-between gap-4 py-8 border-t border-white/[0.08] text-xs text-zinc-500">
           <div className="flex items-center gap-2">
             <img src="/irncyber-mark.svg" alt="" aria-hidden="true" className="w-5 h-5 object-contain" />

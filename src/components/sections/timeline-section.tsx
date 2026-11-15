@@ -8,8 +8,8 @@ export function TimelineSection() {
     <section id="experience" className="py-12 sm:py-16">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="flex items-center gap-1.5 text-xs font-mono text-[#19d3b5] uppercase tracking-widest mb-1.5">
-            <Briefcase className="w-4 h-4 text-[#19d3b5]" />
+          <div className="flex items-center gap-1.5 text-xs font-mono text-[var(--primary)] uppercase tracking-widest mb-1.5">
+            <Briefcase className="w-4 h-4 text-[var(--primary)]" />
             <span>02 / TRAJECTORY</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-sans text-white tracking-tight">
@@ -24,15 +24,15 @@ export function TimelineSection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Experience Column */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-mono text-[#19d3b5] uppercase tracking-widest flex items-center gap-2 mb-1">
+          <h3 className="text-xs font-mono text-[var(--primary)] uppercase tracking-widest flex items-center gap-2 mb-1">
             <Briefcase className="w-3.5 h-3.5" />
             <span>Work Experience</span>
           </h3>
 
-          <div className="p-5 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[#19d3b5]/40 transition-all duration-300">
+          <div className="p-5 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[var(--primary)]/40 transition-all duration-300">
             <div className="flex items-start justify-between gap-2 mb-2">
               <div>
-                <span className="inline-block px-2 py-0.5 rounded text-[10px] font-mono bg-[#19d3b5]/15 text-[#19d3b5] border border-[#19d3b5]/30 mb-1.5">
+                <span className="inline-block px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--primary)]/15 text-[var(--primary)] border border-[var(--primary)]/30 mb-1.5">
                   Freelance
                 </span>
                 <h4 className="text-base font-bold text-white tracking-tight">
@@ -42,7 +42,7 @@ export function TimelineSection() {
               </div>
               <div className="text-right flex-shrink-0">
                 <span className="text-xs font-mono text-zinc-400 flex items-center gap-1">
-                  <Calendar className="w-3 h-3 text-[#19d3b5]" /> Oct 2024 — Present
+                  <Calendar className="w-3 h-3 text-[var(--primary)]" /> Oct 2024 — Present
                 </span>
                 <span className="text-[10px] text-zinc-500 block mt-0.5">Gurugram / Remote</span>
               </div>
@@ -67,14 +67,14 @@ export function TimelineSection() {
 
         {/* Education Column */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-mono text-[#19d3b5] uppercase tracking-widest flex items-center gap-2 mb-1">
+          <h3 className="text-xs font-mono text-[var(--primary)] uppercase tracking-widest flex items-center gap-2 mb-1">
             <GraduationCap className="w-3.5 h-3.5" />
             <span>Education</span>
           </h3>
 
           <div className="flex flex-col gap-3">
             {/* University */}
-            <div className="p-5 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[#19d3b5]/40 transition-all duration-300">
+            <div className="p-5 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[var(--primary)]/40 transition-all duration-300">
               <div className="flex items-start justify-between gap-2 mb-1">
                 <div>
                   <h4 className="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
@@ -83,7 +83,7 @@ export function TimelineSection() {
                       href="https://www.svsu.ac.in"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-zinc-500 hover:text-[#19d3b5] transition-colors"
+                      className="text-zinc-500 hover:text-[var(--primary)] transition-colors"
                       aria-label="SVSU website"
                     >
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -104,7 +104,7 @@ export function TimelineSection() {
             </div>
 
             {/* Schooling */}
-            <div className="p-4 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[#19d3b5]/40 transition-all duration-300">
+            <div className="p-4 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[var(--primary)]/40 transition-all duration-300">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <h4 className="text-xs font-bold text-white">Torch Bearer Convent School</h4>

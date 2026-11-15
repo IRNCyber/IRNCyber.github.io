@@ -43,9 +43,11 @@ const studyCards = [
 
 export function AmbientBackground() {
   const { currentColor } = useColorTheme();
-  const hexA = currentColor?.hex || "#19d3b5";
-  const hexB = currentColor?.ambientB || "#0d9488";
-  const hexC = currentColor?.ambientC || "#0284c7";
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === "light";
+  const hexA = (isLight ? currentColor.lightHex : currentColor.hex) || "#19d3b5";
+  const hexB = (isLight ? currentColor.lightAmbientB : currentColor.ambientB) || "#0d9488";
+  const hexC = (isLight ? currentColor.lightAmbientC : currentColor.ambientC) || "#0284c7";
 
   return (
     <div
@@ -126,7 +128,7 @@ export function CertificationArchive({ items }: { items: Certification[] }) {
   const archive = items.slice(8).filter((item) => (category === "All" || item.category === category) && item.title.toLowerCase().includes(query.toLowerCase()));
   return <details className="cert-archive"><summary>More certifications <span>{items.length - 8} listed</span></summary>
     <div className="cert-tools"><label className="cert-search"><Search size={15} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search certifications" /></label><select aria-label="Filter certifications by category" value={category} onChange={(event) => setCategory(event.target.value)}><option>All</option><option>Security</option><option>Web</option><option>Technology</option><option>Other</option></select></div>
-    <div className="cert-list">{archive.map((item) => <div className="cert-row" key={item.title}><span>{item.title}</span><span>{item.category}{item.level ? ` · ${item.level}` : ""}</span></div>)}{archive.length === 0 && <p className="muted">No matching certifications.</p>}</div>
+    <div className="cert-list">{archive.map((item) => <div className="cert-row" key={item.title}><span>{item.title}{(item.issuer || item.issuedAt || item.credentialId) && <small>{[item.issuer, item.issuedAt && `Issued ${item.issuedAt}`, item.credentialId && `ID ${item.credentialId}`].filter(Boolean).join(" · ")}</small>}</span><span>{item.category}{item.level ? ` · ${item.level}` : ""}{item.credentialUrl && <a className="cert-row-link" href={item.credentialUrl} target="_blank" rel="noreferrer">View badge <ArrowUpRight size={12} /></a>}</span></div>)}{archive.length === 0 && <p className="muted">No matching certifications.</p>}</div>
   </details>;
 }
 

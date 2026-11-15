@@ -1,17 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { Award, CheckCircle2, ChevronDown, ChevronUp, Search, ShieldCheck } from "lucide-react";
-import { certifications, type Certification } from "@/data/certifications";
+import Script from "next/script";
+import { Award, ArrowUpRight, CheckCircle2, ChevronDown, ChevronUp, Search, ShieldCheck } from "lucide-react";
+import { certifications } from "@/data/certifications";
 
 // The 6 prominent relevant certifications specified by user
 const featuredTitles = [
-  "Cyber Security Associate Certification Programme",
-  "Security Analyst Certificate Programme",
+  "Cyber Security Associate",
+  "Security Analyst Certificate",
   "Cybersecurity",
-  "Web Design & Development",
+  "Web Design & Development (English)",
   "Introduction to Programming I",
-  "IoT-Network Specialist Certificate Programme",
+  "IoT Network Specialist Certificate",
 ];
 
 export function CertificationsSection() {
@@ -33,8 +34,8 @@ export function CertificationsSection() {
     <section id="certifications" className="py-12 sm:py-16">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="flex items-center gap-1.5 text-xs font-mono text-[#19d3b5] uppercase tracking-widest mb-1.5">
-            <Award className="w-4 h-4 text-[#19d3b5]" />
+          <div className="flex items-center gap-1.5 text-xs font-mono text-[var(--primary)] uppercase tracking-widest mb-1.5">
+            <Award className="w-4 h-4 text-[var(--primary)]" />
             <span>01 / CREDENTIALS</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-sans text-white tracking-tight">
@@ -51,18 +52,31 @@ export function CertificationsSection() {
         {featuredCerts.map((cert) => (
           <div
             key={cert.title}
-            className="flex items-start gap-3 p-4 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[#19d3b5]/40 hover:-translate-y-0.5 transition-all duration-300"
+            className="flex items-start gap-3 p-4 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[var(--primary)]/40 hover:-translate-y-0.5 transition-all duration-300"
           >
-            <div className="w-8 h-8 rounded-xl bg-[#141922] border border-white/[0.06] flex items-center justify-center text-[#19d3b5] flex-shrink-0 mt-0.5">
-              <ShieldCheck className="w-4 h-4 text-[#19d3b5]" />
+            <div className="w-8 h-8 rounded-xl bg-[#141922] border border-white/[0.06] flex items-center justify-center text-[var(--primary)] flex-shrink-0 mt-0.5">
+              <ShieldCheck className="w-4 h-4 text-[var(--primary)]" />
             </div>
             <div className="min-w-0">
-              <span className="text-[10px] font-mono text-[#19d3b5] uppercase tracking-wider block mb-0.5">
+              <span className="text-[10px] font-mono text-[var(--primary)] uppercase tracking-wider block mb-0.5">
                 {cert.category} {cert.level ? `· ${cert.level}` : ""}
               </span>
               <h3 className="text-sm font-semibold text-white tracking-tight leading-snug">
                 {cert.title}
               </h3>
+              <p className="text-[11px] text-zinc-400 mt-1">
+                {cert.issuer ? `${cert.issuer}${cert.issuedAt ? ` · ${cert.issuedAt}` : ""}` : `${cert.category}${cert.level ? ` · ${cert.level}` : ""}`}
+              </p>
+              {cert.credentialUrl && (
+                <a
+                  href={cert.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 mt-2 text-[10px] text-[var(--primary)] hover:underline"
+                >
+                  View credential <ArrowUpRight className="w-3 h-3" />
+                </a>
+              )}
             </div>
           </div>
         ))}
@@ -73,10 +87,10 @@ export function CertificationsSection() {
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0e1218] border border-white/[0.1] hover:border-[#19d3b5]/50 text-zinc-200 hover:text-white text-xs font-semibold shadow-md transition-all duration-200"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0e1218] border border-white/[0.1] hover:border-[var(--primary)]/50 text-zinc-200 hover:text-white text-xs font-semibold shadow-md transition-all duration-200"
         >
-          <span>{expanded ? "Collapse Certifications" : `View all 24 Certifications (${certifications.length})`}</span>
-          {expanded ? <ChevronUp className="w-4 h-4 text-[#19d3b5]" /> : <ChevronDown className="w-4 h-4 text-[#19d3b5]" />}
+          <span>{expanded ? "Collapse Certifications" : `View all ${certifications.length} Certifications`}</span>
+          {expanded ? <ChevronUp className="w-4 h-4 text-[var(--primary)]" /> : <ChevronDown className="w-4 h-4 text-[var(--primary)]" />}
         </button>
       </div>
 
@@ -91,8 +105,8 @@ export function CertificationsSection() {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search all 24 certifications..."
-                className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#141922] border border-white/[0.08] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[#19d3b5]"
+                placeholder={`Search all ${certifications.length} certifications...`}
+                className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#141922] border border-white/[0.08] text-white text-xs placeholder-zinc-500 focus:outline-none focus:border-[var(--primary)]"
               />
             </div>
             <div className="flex gap-1.5 flex-wrap">
@@ -103,7 +117,7 @@ export function CertificationsSection() {
                   onClick={() => setFilterCat(cat)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-colors ${
                     filterCat === cat
-                      ? "bg-[#19d3b5] text-black font-semibold"
+                      ? "bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold"
                       : "bg-[#141922] text-zinc-400 hover:text-white border border-white/[0.06]"
                   }`}
                 >
@@ -118,11 +132,28 @@ export function CertificationsSection() {
             {filteredArchive.map((cert) => (
               <div
                 key={cert.title}
-                className="flex items-center justify-between p-3 rounded-xl bg-[#141922] border border-white/[0.04] text-xs hover:border-[#19d3b5]/30 transition-colors"
+                className="flex items-center justify-between p-3 rounded-xl bg-[#141922] border border-white/[0.04] text-xs hover:border-[var(--primary)]/30 transition-colors"
               >
-                <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#19d3b5] flex-shrink-0" />
-                  <span className="text-zinc-200 font-medium truncate">{cert.title}</span>
+                <div className="flex items-start gap-2.5 min-w-0 pr-2">
+                  <CheckCircle2 className="w-4 h-4 text-[var(--primary)] flex-shrink-0" />
+                  <div className="min-w-0">
+                    <span className="text-zinc-200 font-medium">{cert.title}</span>
+                    {(cert.issuer || cert.issuedAt) && (
+                      <span className="block text-[10px] text-zinc-500 mt-1">
+                        {[cert.issuer, cert.issuedAt].filter(Boolean).join(" · ")}
+                      </span>
+                    )}
+                    {cert.credentialUrl && (
+                      <a
+                        href={cert.credentialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 mt-1 text-[10px] text-[var(--primary)] hover:underline"
+                      >
+                        Verify credential <ArrowUpRight className="w-3 h-3" />
+                      </a>
+                    )}
+                  </div>
                 </div>
                 <span className="text-[10px] font-mono text-zinc-500 whitespace-nowrap">
                   {cert.category} {cert.level ? `(${cert.level})` : ""}
@@ -137,6 +168,43 @@ export function CertificationsSection() {
           </div>
         </div>
       )}
+
+      <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-[#0e1218] border border-white/[0.08] grid grid-cols-1 md:grid-cols-[1fr_auto] gap-5 items-center">
+        <div>
+          <span className="text-[10px] font-mono text-[var(--primary)] uppercase tracking-wider">
+            LinkedIn Profile
+          </span>
+          <h3 className="text-lg font-semibold text-white mt-1">Rohan Naagar</h3>
+          <p className="text-xs text-zinc-400 mt-1">
+            View the profile and credentials listed on LinkedIn.
+          </p>
+          <Script src="https://platform.linkedin.com/badges/js/profile.js" strategy="afterInteractive" />
+          <div
+            className="badge-base LI-profile-badge mt-4"
+            data-locale="en_US"
+            data-size="medium"
+            data-theme="light"
+            data-type="VERTICAL"
+            data-vanity="rohannaagar"
+            data-version="v1"
+          >
+            <a
+              className="badge-base__link LI-simple-link"
+              href="https://www.linkedin.com/in/rohannaagar?trk=profile-badge"
+            >
+              Rohan Naagar on LinkedIn
+            </a>
+          </div>
+        </div>
+        <a
+          href="https://www.linkedin.com/in/rohannaagar"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm text-[var(--primary)] hover:underline"
+        >
+          Open LinkedIn profile <ArrowUpRight className="w-4 h-4" />
+        </a>
+      </div>
     </section>
   );
 }
