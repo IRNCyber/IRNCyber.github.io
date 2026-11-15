@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { ArrowDownRight, ArrowUpRight, Check, Github, Linkedin, Mail, ShieldCheck } from "lucide-react";
 import { projects } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
 import { certifications } from "@/data/certifications";
 import { clientFeedback } from "@/data/testimonials";
-import { AmbientBackground, CertificationArchive, CommandPalette, CopyEmailButton, FlashCards, GitHubLiveDetails, ProjectExplorer, ScrollProgress, TerminalWidget, ThemeToggle } from "@/components/portfolio-interactions";
+import { AmbientBackground, CertificationArchive, CommandPalette, CopyEmailButton, FlashCards, GitHubLiveDetails, ProjectExplorer, ScrollProgress, TerminalWidget, ThemeToggle, ThemedHeroImage } from "@/components/portfolio-interactions";
 
 export const metadata: Metadata = {
   title: "Cybersecurity Student & Web Developer",
@@ -15,7 +16,25 @@ export const metadata: Metadata = {
 
 const socials = [
   { label: "GitHub", href: "https://github.com/IRNCyber", icon: Github },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/rohannaagar666", icon: Linkedin },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/rohannaagar", icon: Linkedin },
+];
+
+const githubProfileBadges = [
+  {
+    label: "CyberOps",
+    href: "https://github.com/IRNCyber",
+    image: "https://img.shields.io/badge/CyberOps-%23005BAC.svg?logo=github&logoColor=white",
+  },
+  {
+    label: "DevOps",
+    href: "https://github.com/IRNDevc",
+    image: "https://img.shields.io/badge/DevOps-%23FFFFFF.svg?logo=github&logoColor=black",
+  },
+  {
+    label: "RohanNaagar",
+    href: "https://github.com/Rohannaagar666",
+    image: "https://img.shields.io/badge/RohanNaagar-%23ED2939.svg?logo=github&logoColor=white",
+  },
 ];
 
 export default function Page() {
@@ -34,7 +53,7 @@ export default function Page() {
             <div className="hero-actions"><a className="button button-primary" href="#contact">Hire me <ArrowUpRight size={16} /></a><a className="button button-secondary" href="#projects">View projects <ArrowDownRight size={16} /></a></div>
             <div className="hero-socials" aria-label="Social profiles">{socials.map(({ label, href, icon: Icon }) => <a href={href} key={label} target="_blank" rel="noreferrer" aria-label={label}><Icon size={17} />{label}<ArrowUpRight size={12} /></a>)}<a href="mailto:rohannaagar666@gmail.com"><Mail size={16} />Email<ArrowUpRight size={12} /></a></div>
           </div>
-          <div className="hero-aside"><div className="hero-art"><img src="/irncyber-hero.svg" alt="Animated cybersecurity illustration with a terminal, shield, and lock" fetchPriority="high" /></div><div className="availability"><span className="status-dot" /><span><strong>Open to opportunities</strong><small>Freelance · internships · collaboration</small></span></div></div>
+          <div className="hero-aside"><div className="hero-art"><ThemedHeroImage /></div><div className="availability"><span className="status-dot" /><span><strong>Open to opportunities</strong><small>Freelance · internships · collaboration</small></span></div></div>
         </section>
 
         <section className="intro-band section-wrap" id="about"><div><span className="eyebrow">01 / ABOUT</span><h2>Practical by nature.<br />Curious by default.</h2></div><div className="intro-copy"><p>I’m a B.Tech Cyber Security student at Shri Vishwakarma Skill University and a freelance web designer/developer. I work across the front end, with a growing focus on security fundamentals and responsible practice.</p><p>I care about clear interfaces, mobile usability, and building a solid understanding of the systems behind the screen.</p><TerminalWidget /></div></section>
@@ -51,13 +70,96 @@ export default function Page() {
 
         <section className="timeline-section section-wrap" id="experience"><div className="section-heading"><div><span className="eyebrow">05 / EXPERIENCE</span><h2>Experience & education.</h2></div><p>A straightforward record of client work and study.</p></div><div className="timeline"><article className="timeline-entry"><span className="timeline-marker" /><div className="timeline-meta"><span>Oct 2024 — Present</span><span>Freelance</span></div><h3>Web Designer & Developer</h3><p>Design and develop responsive websites with HTML, CSS, JavaScript, React, and TypeScript. Work with clients to shape requirements into clear, usable web experiences.</p><span className="todo-note">[TODO: add project-specific contributions and outcomes.]</span></article><article className="timeline-entry" id="education"><span className="timeline-marker" /><div className="timeline-meta"><span>Aug 2026 — Jun 2031</span><span>Gurugram, India</span></div><h3>B.Tech, Cyber Security</h3><p><a className="inline-link" href="https://www.svsu.ac.in" target="_blank" rel="noreferrer">Shri Vishwakarma Skill University <ArrowUpRight size={13} /></a></p><span className="todo-note">[TODO: confirm these dates; the supplied profile lists a future start date and the end date may be a typo.]</span></article><article className="timeline-entry"><span className="timeline-marker" /><div className="timeline-meta"><span>May 2025 — May 2026</span><span>Faridabad, India</span></div><h3>Higher Secondary, PCM</h3><p>Torch Bearer Convent School</p></article></div></section>
 
-        <section className="content-section section-wrap" id="certifications"><div className="section-heading"><div><span className="eyebrow">06 / CERTIFICATIONS</span><h2>Relevant credentials.</h2></div><p>Selected from the supplied resume. Titles and levels are reproduced as provided.</p></div><div className="cert-featured">{certifications.slice(0, 8).map((cert) => <article key={cert.title}><span className="cert-check"><Check size={14} /></span><div><h3>{cert.title}</h3><p>{cert.category}{cert.level ? ` · ${cert.level}` : ""}</p></div></article>)}</div><CertificationArchive items={certifications} /></section>
+        <section className="content-section section-wrap" id="certifications">
+          <div className="section-heading">
+            <div><span className="eyebrow">06 / CERTIFICATIONS</span><h2>Relevant credentials.</h2></div>
+            <p>Verified Credly badges and licenses listed on my LinkedIn profile.</p>
+          </div>
+          <div className="cert-featured">
+            {certifications.slice(0, 8).map((cert) => (
+              <article key={cert.title}>
+                <span className="cert-check"><Check size={14} /></span>
+                <div className="cert-featured-content">
+                  <h3>{cert.title}</h3>
+                  <p>{cert.issuer ? `${cert.issuer}${cert.issuedAt ? ` · Issued ${cert.issuedAt}` : ""}` : `${cert.category}${cert.level ? ` · ${cert.level}` : ""}`}</p>
+                  {cert.credentialUrl && <a className="cert-verify" href={cert.credentialUrl} target="_blank" rel="noreferrer">View verified badge <ArrowUpRight size={13} /></a>}
+                </div>
+              </article>
+            ))}
+          </div>
+          <CertificationArchive items={certifications} />
+          <aside className="cert-profile-preview">
+            <div>
+              <span className="eyebrow">PROFILE PREVIEW</span>
+              <h3>Rohan Naagar</h3>
+              <p>{certifications.filter((cert) => cert.credentialUrl).length} verified Credly badges, plus credentials listed on LinkedIn.</p>
+              <Script src="https://platform.linkedin.com/badges/js/profile.js" strategy="afterInteractive" />
+              <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="rohannaagar" data-version="v1">
+                <a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/rohannaagar?trk=profile-badge">Rohan Naagar on LinkedIn</a>
+              </div>
+            </div>
+            <div className="cert-profile-links">
+              <a href="https://www.linkedin.com/in/rohannaagar" target="_blank" rel="noreferrer">LinkedIn profile <ArrowUpRight size={14} /></a>
+              <a href="https://www.credly.com/users/rohannaagar/badges/credly" target="_blank" rel="noreferrer">Credly badge wallet <ArrowUpRight size={14} /></a>
+            </div>
+          </aside>
+        </section>
 
-        <section className="github-section section-wrap" id="github"><div className="section-heading"><div><span className="eyebrow">07 / OPEN SOURCE</span><h2>Activity, directly from GitHub.</h2></div><a className="text-link" href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">View profile <ArrowUpRight size={15} /></a></div><div className="github-panel"><div className="github-panel-head"><span><Github size={17} /> github.com/IRNCyber</span><span className="mono">CONTRIBUTIONS</span></div><img src="https://ghchart.rshah.org/19d3b5/IRNCyber" alt="GitHub contribution activity for IRNCyber" loading="lazy" /><p className="muted">Contribution graph provided by GitHub activity visualization. <a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">Open GitHub profile <ArrowUpRight size={12} /></a></p><div className="github-fallback"><Github size={20} /><span>If the graph is unavailable, visit the profile for current repositories and activity.</span><a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div></div><GitHubLiveDetails /><p className="todo-note">[TODO: choose repositories to highlight as pinned work.]</p></section>
+        <section className="github-section section-wrap" id="github">
+          <div className="section-heading">
+            <div><span className="eyebrow">07 / OPEN SOURCE</span><h2>Activity, directly from GitHub.</h2></div>
+            <a className="text-link" href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">View profile <ArrowUpRight size={15} /></a>
+          </div>
+          <div className="github-profile-badges" aria-label="GitHub profiles">
+            {githubProfileBadges.map((badge) => (
+              <a key={badge.label} href={badge.href} target="_blank" rel="noreferrer">
+                <img src={badge.image} alt={`${badge.label} GitHub profile`} loading="lazy" />
+              </a>
+            ))}
+          </div>
+          <div className="github-repo-preview">
+            <div>
+              <span className="eyebrow">FEATURED REPOSITORY</span>
+              <h3>Rust Weather App</h3>
+              <a className="text-link" href="https://github.com/IRNCyber/Rust-Weather--App" target="_blank" rel="noreferrer">Open repository <ArrowUpRight size={14} /></a>
+            </div>
+            <a className="github-contributors" href="https://github.com/IRNCyber/Rust-Weather--App/graphs/contributors" target="_blank" rel="noreferrer" aria-label="View Rust Weather App contributors on GitHub">
+              <img src="https://contrib.rocks/image?repo=IRNCyber/Rust-Weather--App&columns=24" alt="Contributors to IRNCyber/Rust-Weather--App" loading="lazy" />
+            </a>
+          </div>
+          <div className="github-panel">
+            <div className="github-panel-head"><span><Github size={17} /> github.com/IRNCyber</span><span className="mono">CONTRIBUTIONS</span></div>
+            <img src="https://ghchart.rshah.org/19d3b5/IRNCyber" alt="GitHub contribution activity for IRNCyber" loading="lazy" />
+            <p className="muted">Contribution graph provided by GitHub activity visualization. <a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">Open GitHub profile <ArrowUpRight size={12} /></a></p>
+            <div className="github-fallback"><Github size={20} /><span>If the graph is unavailable, visit the profile for current repositories and activity.</span><a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
+          </div>
+          <GitHubLiveDetails />
+          <p className="todo-note">More repositories can be featured as their project details are verified.</p>
+        </section>
 
         <section className="resume-section section-wrap" id="resume"><div className="section-heading"><div><span className="eyebrow">08 / RESUME</span><h2>More detail, in one page.</h2></div><a className="button button-secondary" href="/Resume.pdf" download>Download resume <ArrowUpRight size={15} /></a></div><div className="resume-preview"><iframe src="/Resume.pdf#toolbar=0&navpanes=0" title="Preview of Rohan Naagar’s resume" loading="lazy" /><p>If the inline preview does not load, <a href="/Resume.pdf">open the PDF</a>.</p></div></section>
 
-        <section className="contact-section section-wrap" id="contact"><div><span className="eyebrow">09 / CONTACT</span><h2>Have a project<br />or opportunity?</h2><p>For freelance web work, internships, and thoughtful collaborations, send me a note.</p><div className="contact-actions"><a className="button button-primary" href="mailto:rohannaagar666@gmail.com">Email me <ArrowUpRight size={15} /></a><CopyEmailButton /></div><p className="muted">A scheduling link can be added here when available.</p></div><div className="contact-card"><span className="eyebrow">GET IN TOUCH</span><a className="contact-email" href="mailto:rohannaagar666@gmail.com">rohannaagar666@gmail.com <ArrowUpRight size={15} /></a><span className="contact-location">Gurugram, Haryana, India</span><div className="contact-socials">{socials.map(({ label, href, icon: Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer"><Icon size={16} />{label}</a>)}</div><div className="contact-placeholder">[TODO: add a Formspree/Web3Forms form ID and booking URL to enable form submission and call scheduling.]</div></div></section>
+        <section className="contact-section section-wrap" id="contact">
+          <div>
+            <span className="eyebrow">09 / CONTACT</span>
+            <h2>Have a project<br />or opportunity?</h2>
+            <p>For freelance web work, internships, and thoughtful collaborations, send me a note.</p>
+            <div className="contact-actions"><a className="button button-primary" href="mailto:rohannaagar666@gmail.com">Email me <ArrowUpRight size={15} /></a><CopyEmailButton /></div>
+          </div>
+          <div className="contact-card">
+            <span className="eyebrow">GET IN TOUCH</span>
+            <a className="contact-email" href="mailto:rohannaagar666@gmail.com">rohannaagar666@gmail.com <ArrowUpRight size={15} /></a>
+            <span className="contact-location">Gurugram, Haryana, India</span>
+            <div className="contact-socials">{socials.map(({ label, href, icon: Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer"><Icon size={16} />{label}</a>)}</div>
+            <form className="contact-form" action="https://formspree.io/f/xgvznqyr" method="POST">
+              <input type="hidden" name="_subject" value="New message from the IRNCyber portfolio" />
+              <label>Name<input name="name" type="text" autoComplete="name" required /></label>
+              <label>Email<input name="email" type="email" autoComplete="email" required /></label>
+              <label>Message<textarea name="message" rows={4} required /></label>
+              <button className="button button-primary" type="submit">Send message <ArrowUpRight size={15} /></button>
+            </form>
+          </div>
+        </section>
       </main>
       <footer className="site-footer"><Link href="/" className="wordmark"><img className="wordmark-icon" src="/irncyber-mark.svg" alt="" aria-hidden="true" /><span>IRNCyber<span className="wordmark-dot">.</span></span></Link><span>Built with care in Gurugram, India.</span><a href="#top">Back to top ↑</a></footer>
     </div>

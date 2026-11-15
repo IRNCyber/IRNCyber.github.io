@@ -28,6 +28,7 @@ const studyCards = [
 ];
 
 export function AmbientBackground() {
+  const { resolvedTheme } = useTheme();
   const [seed, setSeed] = useState(0);
   const reduceMotion = useReducedMotion();
   useEffect(() => {
@@ -41,14 +42,27 @@ export function AmbientBackground() {
     const timer = window.setInterval(() => setSeed((value) => pickNext(value)), 12_000);
     return () => window.clearInterval(timer);
   }, [reduceMotion]);
-  const palettes = [
-    ["#19d3b5", "#4267d5", "#a94ed1"],
-    ["#20b8a7", "#8a5bd6", "#e2944c"],
-    ["#4ca8d8", "#19d3b5", "#d65d8b"],
-    ["#39b783", "#6374d8", "#d7a544"],
+  const darkPalettes = [
+    ["#2563eb", "#4338ca", "#8b5cf6"],
+    ["#1d4ed8", "#6366f1", "#7c3aed"],
+    ["#3b82f6", "#7c3aed", "#6366f1"],
+    ["#1e40af", "#4f46e5", "#a78bfa"],
   ];
+  const lightPalettes = [
+    ["#2563eb", "#6366f1", "#60a5fa"],
+    ["#1d4ed8", "#818cf8", "#38bdf8"],
+    ["#3b82f6", "#4f46e5", "#93c5fd"],
+    ["#1e40af", "#7c3aed", "#bfdbfe"],
+  ];
+  const palettes = resolvedTheme === "light" ? lightPalettes : darkPalettes;
   const colors = palettes[seed % palettes.length];
   return <div className="ambient-background" aria-hidden="true" style={{ "--ambient-a": colors[0], "--ambient-b": colors[1], "--ambient-c": colors[2] } as React.CSSProperties} />;
+}
+
+export function ThemedHeroImage() {
+  const { resolvedTheme } = useTheme();
+  const src = resolvedTheme === "dark" ? "/irncyber-hero.svg" : "/irncyber-hero-light.svg";
+  return <img src={src} alt="Animated cybersecurity illustration with a terminal, shield, and lock" fetchPriority="high" />;
 }
 
 export function FlashCards() {
@@ -115,7 +129,7 @@ export function CertificationArchive({ items }: { items: Certification[] }) {
   const archive = items.slice(8).filter((item) => (category === "All" || item.category === category) && item.title.toLowerCase().includes(query.toLowerCase()));
   return <details className="cert-archive"><summary>More certifications <span>{items.length - 8} listed</span></summary>
     <div className="cert-tools"><label className="cert-search"><Search size={15} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search certifications" /></label><select aria-label="Filter certifications by category" value={category} onChange={(event) => setCategory(event.target.value)}><option>All</option><option>Security</option><option>Web</option><option>Technology</option><option>Other</option></select></div>
-    <div className="cert-list">{archive.map((item) => <div className="cert-row" key={item.title}><span>{item.title}</span><span>{item.category}{item.level ? ` · ${item.level}` : ""}</span></div>)}{archive.length === 0 && <p className="muted">No matching certifications.</p>}</div>
+    <div className="cert-list">{archive.map((item) => <div className="cert-row" key={item.title}><span>{item.title}{(item.issuer || item.issuedAt || item.credentialId) && <small>{[item.issuer, item.issuedAt && `Issued ${item.issuedAt}`, item.credentialId && `ID ${item.credentialId}`].filter(Boolean).join(" · ")}</small>}</span><span>{item.category}{item.level ? ` · ${item.level}` : ""}{item.credentialUrl && <a className="cert-row-link" href={item.credentialUrl} target="_blank" rel="noreferrer">View badge <ArrowUpRight size={12} /></a>}</span></div>)}{archive.length === 0 && <p className="muted">No matching certifications.</p>}</div>
   </details>;
 }
 

@@ -80,7 +80,7 @@ export default function RootLayout({
             jobTitle: "Cybersecurity student and freelance web developer",
             address: { "@type": "PostalAddress", addressLocality: "Gurugram", addressCountry: "IN" },
             email: `mailto:${DATA.contact.email}`,
-            sameAs: ["https://github.com/IRNCyber", "https://www.linkedin.com/in/rohannaagar666"],
+            sameAs: ["https://github.com/IRNCyber", "https://www.linkedin.com/in/rohannaagar"],
           }).replace(/</g, "\\u003c") }} />
           {children}
         </ThemeProvider>

@@ -156,7 +156,7 @@ I value clear communication, careful implementation, and interfaces that work we
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/rohannaagar666",
+        url: "https://www.linkedin.com/in/rohannaagar",
         icon: Icons.linkedin,
         navbar: true,
       },
@@ -484,7 +484,7 @@ I value clear communication, careful implementation, and interfaces that work we
     },
     {
       title: "LinkedIn",
-      href: "https://www.linkedin.com/in/rohannaagar666",
+      href: "https://www.linkedin.com/in/rohannaagar",
       category: "Professional Platforms",
     },
     {
