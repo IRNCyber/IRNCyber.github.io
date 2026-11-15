@@ -9,8 +9,8 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "export": "next export",
     "lint": "eslint",
     "lint:fix": "eslint --fix",

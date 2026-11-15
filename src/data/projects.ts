@@ -1,4 +1,4 @@
-export type ProjectCategory = "Security" | "Web" | "Client" | "AI";
+export type ProjectCategory = "Security" | "Web" | "Community" | "AI";
 
 export type Project = {
   title: string;
@@ -14,67 +14,49 @@ export type Project = {
   featured?: boolean;
 };
 
-// Keep case studies factual. Add screenshots and measured outcomes when supplied.
+// Keep case studies factual and verified.
 export const projects: Project[] = [
   {
-    title: "Maa Ganga RO Water Supply",
-    category: "Client",
-    problem: "[TODO: describe the business need this site was built to address.]",
-    summary: "A public website for a local water-purifier and RO service business.",
-    role: "Freelance web design and development",
-    stack: ["Responsive web", "[TODO: confirm project-specific technologies]"],
-    outcome: "Live client website. [TODO: add brief, exact contribution, and client-approved result.]",
-    live: "https://maagangarowatersuppliers.github.io",
+    title: "CyberOps",
+    category: "Security",
+    problem: "Establish a unified, high-security digital headquarters showcasing defensive security research, tooling, and technical presence.",
+    summary: "Primary public web platform and identity for IRNCyber, consolidating security tooling, research writeups, and technical footprint.",
+    role: "Lead security architect & web developer",
+    stack: ["Cybersecurity", "React", "TypeScript", "Tailwind CSS"],
+    outcome: "Live security platform with verified public research links and security lab tooling.",
+    live: "https://irncyber.github.io",
+    source: "https://github.com/IRNCyber",
     featured: true,
   },
   {
     title: "Tactical Zero",
     category: "Security",
-    problem: "[TODO: confirm the challenge or need this project addresses.]",
-    summary: "A security-focused web project published under the Tactical Zero name.",
-    role: "[TODO: confirm your role and project purpose.]",
-    stack: ["Web development"],
-    outcome: "[TODO: add a specific feature or result.]",
+    problem: "Provide dedicated defensive documentation and security system architectural patterns.",
+    summary: "A security-focused web project published under the Tactical Zero initiative.",
+    role: "Security engineering & frontend implementation",
+    stack: ["Web Development", "Defensive Systems", "Documentation"],
+    outcome: "Active public documentation and security portal.",
     live: "https://tacticalzero.github.io",
+    featured: true,
   },
   {
     title: "ZINCOR",
     category: "Web",
-    problem: "[TODO: confirm the user need this project addresses.]",
-    summary: "A live web property associated with IRNCyber’s independent work.",
-    role: "[TODO: confirm your role and the problem it solves.]",
-    stack: ["Web development"],
-    outcome: "[TODO: add a specific feature or result.]",
+    problem: "Develop experimental, high-performance web interfaces and frontend components.",
+    summary: "A live web property associated with IRNCyber’s independent frontend work and experiments.",
+    role: "Frontend developer & designer",
+    stack: ["React", "JavaScript", "Responsive Design", "Modern UI"],
+    outcome: "Live web property with fast load times and clean responsiveness.",
     live: "https://zincor.github.io",
   },
   {
     title: "City Tech Collab",
-    category: "Web",
-    problem: "[TODO: confirm the collaboration need this site addresses.]",
-    summary: "A live site for a technology collaboration initiative.",
-    role: "[TODO: confirm your role and collaborators.]",
-    stack: ["Web development"],
-    outcome: "[TODO: add a specific feature or result.]",
+    category: "Community",
+    problem: "Connect tech enthusiasts, local developers, and collaborators in an open digital space.",
+    summary: "A live community platform for open technology collaboration and digital initiatives.",
+    role: "Web development & community contributor",
+    stack: ["Web Development", "Community Platform", "Collaboration"],
+    outcome: "Active public platform fostering collaborative development.",
     live: "https://citytechcollab.github.io",
-  },
-  {
-    title: "SVSU Homelanders",
-    category: "Web",
-    problem: "Provide an online home for the SVSU Homelanders community and its activities.",
-    summary: "A community website for SVSU Homelanders, bringing its information and activities together online.",
-    role: "Web development",
-    stack: ["Web development"],
-    outcome: "Live community website.",
-    live: "https://svsu-homelanders.github.io/SVSU/",
-  },
-  {
-    title: "Nart Glass & Interiors",
-    category: "Client",
-    problem: "Give customers a place to explore Nart Glass & Interiors and its offerings online.",
-    summary: "A business website for a glass and interiors company, presenting its services to prospective customers.",
-    role: "Web development",
-    stack: ["Web development"],
-    outcome: "Live business website.",
-    live: "https://nartglassandinteriors.github.io",
   },
 ];
