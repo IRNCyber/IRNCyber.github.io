@@ -11,11 +11,42 @@
   --color-primary-foreground: var(--primary-foreground); --radius-xl: 1.25rem;
 }
 
-:root { color-scheme: dark; --font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; --background:#080b10; --foreground:#e9eef2; --card:#0e131a; --muted:#141c24; --muted-foreground:#9aa8b5; --border:#202a34; --primary:#19d3b5; --primary-foreground:#041310; --primary-hover:#54e5ce; --note:#c8ad75; --accent:#19d3b5; --radius:.75rem; }
-.light { color-scheme:light; --background:#f7f9fa; --foreground:#13202a; --card:#fff; --muted:#edf2f3; --muted-foreground:#52626d; --border:#dbe3e5; --primary:#2563eb; --primary-foreground:#fff; --primary-hover:#1d4ed8; --note:#75551a; --accent:#2563eb; }
+:root {
+  color-scheme: dark;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --background: #07090d;
+  --foreground: #e9eef2;
+  --card: #0e1218;
+  --muted: #141c24;
+  --muted-foreground: #9aa8b5;
+  --border: rgba(255, 255, 255, 0.08);
+  --primary: #19d3b5;
+  --primary-foreground: #041310;
+  --primary-hover: #54e5ce;
+  --accent: #19d3b5;
+  --primary-rgb: 25, 211, 181;
+  --note: #c8ad75;
+  --radius: 0.75rem;
+}
+.light {
+  color-scheme: light;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: rgba(15, 23, 42, 0.08);
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --primary-hover: #1d4ed8;
+  --accent: #2563eb;
+  --primary-rgb: 37, 99, 235;
+  --note: #75551a;
+}
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-padding-top:5rem; }
-body { margin:0; min-height:100vh; background:var(--background); color:var(--foreground); font-family:var(--font-sans),Arial,sans-serif; font-feature-settings:"ss01" on; }
+body { margin:0; min-height:100vh; background:var(--background); color:var(--foreground); font-family:var(--font-sans),Arial,sans-serif; font-feature-settings:"ss01" on; transition: background-color 0.4s ease, color 0.4s ease; }
 body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.25; background-image:linear-gradient(to right, color-mix(in srgb,var(--border) 50%, transparent) 1px,transparent 1px),linear-gradient(to bottom,color-mix(in srgb,var(--border) 50%, transparent) 1px,transparent 1px); background-size:72px 72px; mask-image:linear-gradient(to bottom,black,transparent 85%); }
 a { color:inherit; text-decoration:none; }
 button,input,select { font:inherit; }
@@ -164,6 +195,19 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .light .wordmark-icon { filter:hue-rotate(75deg); }
 .light .flash-card-controls .filter-chip { background:var(--card); }
 .light .flash-card-controls .filter-chip:hover { background:color-mix(in srgb,var(--primary) 7%,var(--card)); }
+.light [class~="bg-[#0b0e14]/95"],
+.light [class~="bg-[#0e1218]"],
+.light [class~="bg-[#10151e]"],
+.light [class~="bg-[#080c10]"] { background-color:var(--card); }
+.light [class~="bg-[#141922]"],
+.light [class~="bg-[#18202d]"] { background-color:var(--muted); }
+.light [class~="text-white"] { color:var(--foreground); }
+.light [class*="text-zinc-100"],
+.light [class*="text-zinc-200"] { color:#334155; }
+.light [class*="text-zinc-300"] { color:#475569; }
+.light [class*="text-zinc-400"],
+.light [class*="text-zinc-500"] { color:#64748b; }
+.light [class*="border-white"] { border-color:var(--border); }
 .cert-profile-preview .LI-profile-badge { margin-top:12px; }
 .contact-form { display:grid; gap:12px; margin-top:22px; }
 .contact-form label { display:grid; gap:6px; color:var(--muted-foreground); font-size:10px; }
@@ -178,3 +222,39 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 .github-contributors { display:block; flex:1; min-width:0; }
 .github-contributors img { display:block; width:100%; max-width:560px; height:auto; margin-left:auto; }
 @media (max-width:600px) { .github-repo-preview { align-items:flex-start; flex-direction:column; gap:14px; }.github-contributors { width:100%; } }
+
+/* Bento Marquee & Utility styles */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+.mask-gradient-x {
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -6,14 +6,28 @@ import type { Project, ProjectCategory } from "@/data/projects";
 import type { Certification } from "@/data/certifications";
 import { useTheme } from "next-themes";
 import { motion, useReducedMotion } from "motion/react";
+import { useColorTheme } from "@/context/color-theme-context";
 
-const categories: ("All" | ProjectCategory)[] = ["All", "Security", "Web", "Client", "AI"];
+const categories: ("All" | ProjectCategory)[] = ["All", "Security", "Web", "Community", "AI"];
 const destinations = [
-  ["About", "#about"], ["Projects", "#projects"], ["Security", "#security"],
-  ["Flash cards", "#flash-cards"], ["Skills", "#skills"], ["Experience", "#experience"], ["Education", "#education"],
-  ["Certifications", "#certifications"], ["GitHub activity", "#github"],
-  ["Resume", "/Resume.pdf"], ["Contact", "#contact"],
-  ["IRNCyber Blog", "https://irncyber.blogspot.com/"], ["IRNDev Blog", "https://irndev.blogspot.com/"],
+  ["Bento Dashboard", "#bento-dashboard"],
+  ["About & Profile", "#about"],
+  ["Tech Arsenal", "#stack"],
+  ["Works Gallery", "#works-gallery"],
+  ["Projects & Case Studies", "#projects"],
+  ["Homelanders & Techvengers", "#svsu-teams"],
+  ["Solutions Suite", "#services"],
+  ["Live Client Work", "#clients"],
+  ["Security Lab / Terminal", "#security-terminal"],
+  ["Online Presence", "#presence"],
+  ["Workflow Highlights", "#workflow"],
+  ["Certifications", "#certifications"],
+  ["Experience & Education", "#experience"],
+  ["GitHub Activity", "#github"],
+  ["Contact", "#contact"],
+  ["Resume (PDF)", "/Resume.pdf"],
+  ["IRNCyber Blog", "https://irncyber.blogspot.com/"],
+  ["IRNDev Blog", "https://irndev.blogspot.com/"],
 ];
 
 const studyCards = [
@@ -28,41 +42,26 @@ const studyCards = [
 ];
 
 export function AmbientBackground() {
+  const { currentColor } = useColorTheme();
   const { resolvedTheme } = useTheme();
-  const [seed, setSeed] = useState(0);
-  const reduceMotion = useReducedMotion();
-  useEffect(() => {
-    if (reduceMotion) return;
-    const pickNext = (value: number) => {
-      let next = value;
-      while (next === value) next = Math.floor(Math.random() * 4);
-      return next;
-    };
-    setSeed((value) => pickNext(value));
-    const timer = window.setInterval(() => setSeed((value) => pickNext(value)), 12_000);
-    return () => window.clearInterval(timer);
-  }, [reduceMotion]);
-  const darkPalettes = [
-    ["#2563eb", "#4338ca", "#8b5cf6"],
-    ["#1d4ed8", "#6366f1", "#7c3aed"],
-    ["#3b82f6", "#7c3aed", "#6366f1"],
-    ["#1e40af", "#4f46e5", "#a78bfa"],
-  ];
-  const lightPalettes = [
-    ["#2563eb", "#6366f1", "#60a5fa"],
-    ["#1d4ed8", "#818cf8", "#38bdf8"],
-    ["#3b82f6", "#4f46e5", "#93c5fd"],
-    ["#1e40af", "#7c3aed", "#bfdbfe"],
-  ];
-  const palettes = resolvedTheme === "light" ? lightPalettes : darkPalettes;
-  const colors = palettes[seed % palettes.length];
-  return <div className="ambient-background" aria-hidden="true" style={{ "--ambient-a": colors[0], "--ambient-b": colors[1], "--ambient-c": colors[2] } as React.CSSProperties} />;
-}
+  const isLight = resolvedTheme === "light";
+  const hexA = (isLight ? currentColor.lightHex : currentColor.hex) || "#19d3b5";
+  const hexB = (isLight ? currentColor.lightAmbientB : currentColor.ambientB) || "#0d9488";
+  const hexC = (isLight ? currentColor.lightAmbientC : currentColor.ambientC) || "#0284c7";
 
-export function ThemedHeroImage() {
-  const { resolvedTheme } = useTheme();
-  const src = resolvedTheme === "dark" ? "/irncyber-hero.svg" : "/irncyber-hero-light.svg";
-  return <img src={src} alt="Animated cybersecurity illustration with a terminal, shield, and lock" fetchPriority="high" />;
+  return (
+    <div
+      className="ambient-background"
+      aria-hidden="true"
+      style={
+        {
+          "--ambient-a": hexA,
+          "--ambient-b": hexB,
+          "--ambient-c": hexC,
+        } as React.CSSProperties
+      }
+    />
+  );
 }
 
 export function FlashCards() {

@@ -1,167 +1,167 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import Script from "next/script";
-import { ArrowDownRight, ArrowUpRight, Check, Github, Linkedin, Mail, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, FolderGit2 } from "lucide-react";
 import { projects } from "@/data/projects";
-import { skillGroups } from "@/data/skills";
-import { certifications } from "@/data/certifications";
-import { clientFeedback } from "@/data/testimonials";
-import { AmbientBackground, CertificationArchive, CommandPalette, CopyEmailButton, FlashCards, GitHubLiveDetails, ProjectExplorer, ScrollProgress, TerminalWidget, ThemeToggle, ThemedHeroImage } from "@/components/portfolio-interactions";
+import { BentoDashboard } from "@/components/bento/bento-dashboard";
+import { SvsuTeamsSection } from "@/components/sections/svsu-teams-section";
+import { CertificationsSection } from "@/components/sections/certifications-section";
+import { TimelineSection } from "@/components/sections/timeline-section";
+import { GitHubSection } from "@/components/sections/github-section";
+import { ContactSection } from "@/components/sections/contact-section";
+import { ThemeCustomizer } from "@/components/theme-customizer";
+import { WebIcon } from "@/components/web-icon";
+import {
+  AmbientBackground,
+  CommandPalette,
+  FlashCards,
+  ProjectExplorer,
+  ScrollProgress,
+} from "@/components/portfolio-interactions";
 
 export const metadata: Metadata = {
-  title: "Cybersecurity Student & Web Developer",
-  description: "Rohan Naagar is a cybersecurity student and freelance web designer/developer in Gurugram, India.",
+  title: "Rohan Naagar | Cybersecurity Student & Web Developer",
+  description:
+    "Rohan Naagar is a cybersecurity student and freelance web designer/developer in Gurugram, India, building responsive web experiences and learning security through responsible practice.",
   alternates: { canonical: "/" },
 };
 
-const socials = [
-  { label: "GitHub", href: "https://github.com/IRNCyber", icon: Github },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/rohannaagar", icon: Linkedin },
-];
-
-const githubProfileBadges = [
-  {
-    label: "CyberOps",
-    href: "https://github.com/IRNCyber",
-    image: "https://img.shields.io/badge/CyberOps-%23005BAC.svg?logo=github&logoColor=white",
-  },
-  {
-    label: "DevOps",
-    href: "https://github.com/IRNDevc",
-    image: "https://img.shields.io/badge/DevOps-%23FFFFFF.svg?logo=github&logoColor=black",
-  },
-  {
-    label: "RohanNaagar",
-    href: "https://github.com/Rohannaagar666",
-    image: "https://img.shields.io/badge/RohanNaagar-%23ED2939.svg?logo=github&logoColor=white",
-  },
-];
-
 export default function Page() {
-  return <>
-    <ScrollProgress />
-    <AmbientBackground />
-    <div className="site-shell">
-      <header className="site-header"><Link className="wordmark" href="/" aria-label="IRNCyber home"><img className="wordmark-icon" src="/irncyber-mark.svg" alt="" aria-hidden="true" /><span>IRNCyber<span className="wordmark-dot">.</span></span></Link><nav className="top-nav" aria-label="Main navigation"><a href="#projects">Projects</a><a href="#security">Security</a><a href="https://irncyber.blogspot.com/" target="_blank" rel="noreferrer">IRNCyber Blog</a><a href="https://irndev.blogspot.com/" target="_blank" rel="noreferrer">IRNDev Blog</a><a href="#contact">Contact</a></nav><div className="header-tools"><CommandPalette /><ThemeToggle /><a className="header-resume" href="/Resume.pdf" target="_blank" rel="noreferrer">Resume <ArrowUpRight size={14} /></a></div></header>
+  return (
+    <>
+      <ScrollProgress />
+      <AmbientBackground />
 
-      <main>
-        <section className="hero section-wrap" id="top">
-          <div className="hero-copy"><p className="eyebrow hero-kicker"><span className="status-dot" /> GURUGRAM, INDIA <span className="eyebrow-divider">/</span> CYBERSECURITY · WEB</p>
-            <h1>I build for the web.<br /><span>I learn how to defend it.</span></h1>
-            <p className="hero-role"><span className="mono">role:// </span><span className="role-typing">Cybersecurity student · Web developer</span></p>
-            <p className="hero-lede">I’m Rohan Naagar — a cybersecurity student and freelance web designer/developer focused on useful, responsive digital experiences.</p>
-            <div className="hero-actions"><a className="button button-primary" href="#contact">Hire me <ArrowUpRight size={16} /></a><a className="button button-secondary" href="#projects">View projects <ArrowDownRight size={16} /></a></div>
-            <div className="hero-socials" aria-label="Social profiles">{socials.map(({ label, href, icon: Icon }) => <a href={href} key={label} target="_blank" rel="noreferrer" aria-label={label}><Icon size={17} />{label}<ArrowUpRight size={12} /></a>)}<a href="mailto:rohannaagar666@gmail.com"><Mail size={16} />Email<ArrowUpRight size={12} /></a></div>
-          </div>
-          <div className="hero-aside"><div className="hero-art"><ThemedHeroImage /></div><div className="availability"><span className="status-dot" /><span><strong>Open to opportunities</strong><small>Freelance · internships · collaboration</small></span></div></div>
-        </section>
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        {/* Navigation Header */}
+        <header className="flex h-20 items-center justify-between border-b border-white/[0.08] gap-4">
+          <Link href="/" className="flex items-center gap-2.5 font-bold text-sm tracking-tight text-white group" aria-label="IRNCyber home">
+            <WebIcon className="w-7 h-7 group-hover:scale-105 transition-transform" />
+            <span className="font-sans font-bold text-base">
+              IRNCyber<span className="text-[var(--primary)]">.</span>
+            </span>
+          </Link>
 
-        <section className="intro-band section-wrap" id="about"><div><span className="eyebrow">01 / ABOUT</span><h2>Practical by nature.<br />Curious by default.</h2></div><div className="intro-copy"><p>I’m a B.Tech Cyber Security student at Shri Vishwakarma Skill University and a freelance web designer/developer. I work across the front end, with a growing focus on security fundamentals and responsible practice.</p><p>I care about clear interfaces, mobile usability, and building a solid understanding of the systems behind the screen.</p><TerminalWidget /></div></section>
+          <nav className="hidden lg:flex items-center gap-6 text-xs font-medium text-zinc-400" aria-label="Main navigation">
+            <a href="#bento-dashboard" className="hover:text-[var(--primary)] transition-colors">
+              Dashboard
+            </a>
+            <a href="#projects" className="hover:text-[var(--primary)] transition-colors">
+              Projects
+            </a>
+            <a href="#svsu-teams" className="hover:text-[var(--primary)] transition-colors font-semibold text-zinc-300">
+              SVSU Teams
+            </a>
+            <a href="#certifications" className="hover:text-[var(--primary)] transition-colors">
+              Certifications
+            </a>
+            <a href="#experience" className="hover:text-[var(--primary)] transition-colors">
+              Experience
+            </a>
+            <a
+              href="https://irncyber.blogspot.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[var(--primary)] transition-colors"
+            >
+              IRNCyber Blog
+            </a>
+            <a
+              href="https://irndev.blogspot.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[var(--primary)] transition-colors"
+            >
+              IRNDev Blog
+            </a>
+            <a href="#contact" className="hover:text-[var(--primary)] transition-colors">
+              Contact
+            </a>
+          </nav>
 
-        <section className="content-section section-wrap" id="projects"><div className="section-heading"><div><span className="eyebrow">02 / SELECTED WORK</span><h2>Projects with a purpose.</h2></div><p>Selected live work. Case study details and screenshots will be added as they are verified.</p></div><ProjectExplorer projects={projects} /></section>
-
-        <section className="content-section section-wrap" id="client-feedback"><div className="section-heading"><div><span className="eyebrow">CLIENT FEEDBACK</span><h2>Results, with permission.</h2></div><p>Client comments belong to the people who gave them. Nothing is quoted without approval.</p></div><div className="feedback-grid">{clientFeedback.map((slot) => <article className="feedback-slot" key={slot.client}><span className="eyebrow">CLIENT WORK</span><h3>{slot.client}</h3>{slot.quote ? <blockquote>“{slot.quote}”</blockquote> : <p>[TODO: add an approved testimonial, attribution, and permission.]</p>}<small>{slot.attribution ?? slot.status}</small></article>)}</div></section>
-
-        <section className="security-section section-wrap" id="security"><div className="section-heading"><div><span className="eyebrow">03 / SECURITY</span><h2>Learning in public.<br />Working responsibly.</h2></div><p>Security is a practice built on patience, evidence, and respect for scope. I only test systems where I have permission.</p></div><div className="security-grid"><div className="security-principle"><ShieldCheck size={23} /><h3>Responsible disclosure</h3><p>Any security testing I do is limited to explicitly authorized environments. Findings are shared privately with the relevant owner and handled with care.</p><span className="security-note">No sensitive data or unverified rankings published.</span></div><div className="security-links"><span className="eyebrow">TRAINING & RESEARCH PROFILES</span>{[["TryHackMe", "https://tryhackme.com/p/IRNCyber"], ["Hack The Box", "https://app.hackthebox.com/profile/2313221"], ["HackerOne", "https://hackerone.com/IRNCyber"], ["Bugcrowd", "https://bugcrowd.com/IRNCyber"]].map(([name, href]) => <a key={name} href={href} target="_blank" rel="noreferrer"><span>{name}<small>Profile · activity not independently verified</small></span><ArrowUpRight size={16} /></a>)}<p className="todo-note">[TODO: add verified lab progress, CTF writeups, and disclosure links.]</p></div></div></section>
-
-        <FlashCards />
-
-        <section className="content-section section-wrap" id="skills"><div className="section-heading"><div><span className="eyebrow">04 / TOOLKIT</span><h2>A focused toolkit.</h2></div><p>Grouped by where I use them. Levels describe current comfort, not certification or years of experience.</p></div><div className="skill-grid">{skillGroups.map((group) => <article className="skill-card" key={group.category}><h3>{group.category}</h3><ul>{group.items.map((skill) => <li key={skill.name}><span>{skill.name}</span><span className={`skill-level level-${skill.level.toLowerCase()}`}>{skill.level}</span></li>)}</ul></article>)}</div><div className="skill-legend"><span><i className="legend-dot core" /> Core</span><span><i className="legend-dot comfortable" /> Comfortable</span><span><i className="legend-dot learning" /> Learning</span></div></section>
-
-        <section className="timeline-section section-wrap" id="experience"><div className="section-heading"><div><span className="eyebrow">05 / EXPERIENCE</span><h2>Experience & education.</h2></div><p>A straightforward record of client work and study.</p></div><div className="timeline"><article className="timeline-entry"><span className="timeline-marker" /><div className="timeline-meta"><span>Oct 2024 — Present</span><span>Freelance</span></div><h3>Web Designer & Developer</h3><p>Design and develop responsive websites with HTML, CSS, JavaScript, React, and TypeScript. Work with clients to shape requirements into clear, usable web experiences.</p><span className="todo-note">[TODO: add project-specific contributions and outcomes.]</span></article><article className="timeline-entry" id="education"><span className="timeline-marker" /><div className="timeline-meta"><span>Aug 2026 — Jun 2031</span><span>Gurugram, India</span></div><h3>B.Tech, Cyber Security</h3><p><a className="inline-link" href="https://www.svsu.ac.in" target="_blank" rel="noreferrer">Shri Vishwakarma Skill University <ArrowUpRight size={13} /></a></p><span className="todo-note">[TODO: confirm these dates; the supplied profile lists a future start date and the end date may be a typo.]</span></article><article className="timeline-entry"><span className="timeline-marker" /><div className="timeline-meta"><span>May 2025 — May 2026</span><span>Faridabad, India</span></div><h3>Higher Secondary, PCM</h3><p>Torch Bearer Convent School</p></article></div></section>
-
-        <section className="content-section section-wrap" id="certifications">
-          <div className="section-heading">
-            <div><span className="eyebrow">06 / CERTIFICATIONS</span><h2>Relevant credentials.</h2></div>
-            <p>Verified Credly badges and licenses listed on my LinkedIn profile.</p>
-          </div>
-          <div className="cert-featured">
-            {certifications.slice(0, 8).map((cert) => (
-              <article key={cert.title}>
-                <span className="cert-check"><Check size={14} /></span>
-                <div className="cert-featured-content">
-                  <h3>{cert.title}</h3>
-                  <p>{cert.issuer ? `${cert.issuer}${cert.issuedAt ? ` · Issued ${cert.issuedAt}` : ""}` : `${cert.category}${cert.level ? ` · ${cert.level}` : ""}`}</p>
-                  {cert.credentialUrl && <a className="cert-verify" href={cert.credentialUrl} target="_blank" rel="noreferrer">View verified badge <ArrowUpRight size={13} /></a>}
-                </div>
-              </article>
-            ))}
-          </div>
-          <CertificationArchive items={certifications} />
-          <aside className="cert-profile-preview">
-            <div>
-              <span className="eyebrow">PROFILE PREVIEW</span>
-              <h3>Rohan Naagar</h3>
-              <p>{certifications.filter((cert) => cert.credentialUrl).length} verified Credly badges, plus credentials listed on LinkedIn.</p>
-              <Script src="https://platform.linkedin.com/badges/js/profile.js" strategy="afterInteractive" />
-              <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="rohannaagar" data-version="v1">
-                <a className="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/rohannaagar?trk=profile-badge">Rohan Naagar on LinkedIn</a>
-              </div>
-            </div>
-            <div className="cert-profile-links">
-              <a href="https://www.linkedin.com/in/rohannaagar" target="_blank" rel="noreferrer">LinkedIn profile <ArrowUpRight size={14} /></a>
-              <a href="https://www.credly.com/users/rohannaagar/badges/credly" target="_blank" rel="noreferrer">Credly badge wallet <ArrowUpRight size={14} /></a>
-            </div>
-          </aside>
-        </section>
-
-        <section className="github-section section-wrap" id="github">
-          <div className="section-heading">
-            <div><span className="eyebrow">07 / OPEN SOURCE</span><h2>Activity, directly from GitHub.</h2></div>
-            <a className="text-link" href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">View profile <ArrowUpRight size={15} /></a>
-          </div>
-          <div className="github-profile-badges" aria-label="GitHub profiles">
-            {githubProfileBadges.map((badge) => (
-              <a key={badge.label} href={badge.href} target="_blank" rel="noreferrer">
-                <img src={badge.image} alt={`${badge.label} GitHub profile`} loading="lazy" />
-              </a>
-            ))}
-          </div>
-          <div className="github-repo-preview">
-            <div>
-              <span className="eyebrow">FEATURED REPOSITORY</span>
-              <h3>Rust Weather App</h3>
-              <a className="text-link" href="https://github.com/IRNCyber/Rust-Weather--App" target="_blank" rel="noreferrer">Open repository <ArrowUpRight size={14} /></a>
-            </div>
-            <a className="github-contributors" href="https://github.com/IRNCyber/Rust-Weather--App/graphs/contributors" target="_blank" rel="noreferrer" aria-label="View Rust Weather App contributors on GitHub">
-              <img src="https://contrib.rocks/image?repo=IRNCyber/Rust-Weather--App&columns=24" alt="Contributors to IRNCyber/Rust-Weather--App" loading="lazy" />
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <CommandPalette />
+            <ThemeCustomizer />
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#141922] border border-white/[0.08] hover:border-[var(--primary)] text-xs font-semibold text-zinc-200 hover:text-white transition-all"
+            >
+              <span>Resume</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[var(--primary)]" />
             </a>
           </div>
-          <div className="github-panel">
-            <div className="github-panel-head"><span><Github size={17} /> github.com/IRNCyber</span><span className="mono">CONTRIBUTIONS</span></div>
-            <img src="https://ghchart.rshah.org/19d3b5/IRNCyber" alt="GitHub contribution activity for IRNCyber" loading="lazy" />
-            <p className="muted">Contribution graph provided by GitHub activity visualization. <a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">Open GitHub profile <ArrowUpRight size={12} /></a></p>
-            <div className="github-fallback"><Github size={20} /><span>If the graph is unavailable, visit the profile for current repositories and activity.</span><a href="https://github.com/IRNCyber" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a></div>
-          </div>
-          <GitHubLiveDetails />
-          <p className="todo-note">More repositories can be featured as their project details are verified.</p>
-        </section>
+        </header>
 
-        <section className="resume-section section-wrap" id="resume"><div className="section-heading"><div><span className="eyebrow">08 / RESUME</span><h2>More detail, in one page.</h2></div><a className="button button-secondary" href="/Resume.pdf" download>Download resume <ArrowUpRight size={15} /></a></div><div className="resume-preview"><iframe src="/Resume.pdf#toolbar=0&navpanes=0" title="Preview of Rohan Naagar’s resume" loading="lazy" /><p>If the inline preview does not load, <a href="/Resume.pdf">open the PDF</a>.</p></div></section>
+        <main className="py-6">
+          {/* Bento Dashboard Container (matching reference screenshot) */}
+          <BentoDashboard />
 
-        <section className="contact-section section-wrap" id="contact">
-          <div>
-            <span className="eyebrow">09 / CONTACT</span>
-            <h2>Have a project<br />or opportunity?</h2>
-            <p>For freelance web work, internships, and thoughtful collaborations, send me a note.</p>
-            <div className="contact-actions"><a className="button button-primary" href="mailto:rohannaagar666@gmail.com">Email me <ArrowUpRight size={15} /></a><CopyEmailButton /></div>
+          {/* Full Case Studies / Project Explorer (anchored by "View Works") */}
+          <section id="projects" className="py-12 sm:py-16 border-t border-white/[0.08]">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-mono text-[var(--primary)] uppercase tracking-widest mb-1.5">
+                  <FolderGit2 className="w-4 h-4 text-[var(--primary)]" />
+                  <span>01 / SELECTED CASE STUDIES</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold font-sans text-white tracking-tight">
+                  Projects &amp; Live Deployments
+                </h2>
+              </div>
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-sm">
+                Factual case studies of live security platforms, experiments, and technical web initiatives.
+              </p>
+            </div>
+            <ProjectExplorer projects={projects} />
+          </section>
+
+          <div className="border-t border-white/[0.08]">
+            <FlashCards />
           </div>
-          <div className="contact-card">
-            <span className="eyebrow">GET IN TOUCH</span>
-            <a className="contact-email" href="mailto:rohannaagar666@gmail.com">rohannaagar666@gmail.com <ArrowUpRight size={15} /></a>
-            <span className="contact-location">Gurugram, Haryana, India</span>
-            <div className="contact-socials">{socials.map(({ label, href, icon: Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer"><Icon size={16} />{label}</a>)}</div>
-            <form className="contact-form" action="https://formspree.io/f/xgvznqyr" method="POST">
-              <input type="hidden" name="_subject" value="New message from the IRNCyber portfolio" />
-              <label>Name<input name="name" type="text" autoComplete="name" required /></label>
-              <label>Email<input name="email" type="email" autoComplete="email" required /></label>
-              <label>Message<textarea name="message" rows={4} required /></label>
-              <button className="button button-primary" type="submit">Send message <ArrowUpRight size={15} /></button>
-            </form>
+
+          {/* New Section: SVSU Teams (Homelanders & Techvengers) */}
+          <div className="border-t border-white/[0.08]">
+            <SvsuTeamsSection />
           </div>
-        </section>
-      </main>
-      <footer className="site-footer"><Link href="/" className="wordmark"><img className="wordmark-icon" src="/irncyber-mark.svg" alt="" aria-hidden="true" /><span>IRNCyber<span className="wordmark-dot">.</span></span></Link><span>Built with care in Gurugram, India.</span><a href="#top">Back to top ↑</a></footer>
-    </div>
-  </>;
+
+          {/* Below Bento: Certifications Section */}
+          <div className="border-t border-white/[0.08]">
+            <CertificationsSection />
+          </div>
+
+          {/* Below Bento: Experience & Education Timeline */}
+          <div className="border-t border-white/[0.08]">
+            <TimelineSection />
+          </div>
+
+          {/* Below Bento: GitHub Activity & Repositories */}
+          <div className="border-t border-white/[0.08]">
+            <GitHubSection />
+          </div>
+
+          {/* Below Bento: Contact Section */}
+          <div className="border-t border-white/[0.08]">
+            <ContactSection />
+          </div>
+        </main>
+
+        <footer className="flex flex-col sm:flex-row items-center justify-between gap-4 py-8 border-t border-white/[0.08] text-xs text-zinc-500">
+          <div className="flex items-center gap-2">
+            <img src="/irncyber-mark.svg" alt="" aria-hidden="true" className="w-5 h-5 object-contain" />
+            <span className="font-semibold text-zinc-300">
+              IRNCyber<span className="text-[var(--primary)]">.</span>
+            </span>
+            <span>— Built with care in Gurugram, India.</span>
+          </div>
+          <a
+            href="#bento-dashboard"
+            className="text-zinc-400 hover:text-[var(--primary)] transition-colors"
+          >
+            Back to top ↑
+          </a>
+        </footer>
+      </div>
+    </>
+  );
 }
