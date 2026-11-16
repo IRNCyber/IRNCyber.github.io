@@ -43,7 +43,7 @@ const studyCards = [
 
 export function AmbientBackground() {
   const { currentColor } = useColorTheme();
-  const hexA = currentColor?.hex || "#19d3b5";
+  const hexA = currentColor?.hex || "var(--primary)";
   const hexB = currentColor?.ambientB || "#0d9488";
   const hexC = currentColor?.ambientC || "#0284c7";
 
@@ -123,10 +123,16 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
 export function CertificationArchive({ items }: { items: Certification[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
-  const archive = items.slice(8).filter((item) => (category === "All" || item.category === category) && item.title.toLowerCase().includes(query.toLowerCase()));
+  const search = query.toLowerCase();
+  const archive = items.slice(8).filter((item) => (
+    (category === "All" || item.category === category) &&
+    (item.title.toLowerCase().includes(search) ||
+      item.issuer.toLowerCase().includes(search) ||
+      item.credentialId?.toLowerCase().includes(search))
+  ));
   return <details className="cert-archive"><summary>More certifications <span>{items.length - 8} listed</span></summary>
     <div className="cert-tools"><label className="cert-search"><Search size={15} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search certifications" /></label><select aria-label="Filter certifications by category" value={category} onChange={(event) => setCategory(event.target.value)}><option>All</option><option>Security</option><option>Web</option><option>Technology</option><option>Other</option></select></div>
-    <div className="cert-list">{archive.map((item) => <div className="cert-row" key={item.title}><span>{item.title}</span><span>{item.category}{item.level ? ` · ${item.level}` : ""}</span></div>)}{archive.length === 0 && <p className="muted">No matching certifications.</p>}</div>
+    <div className="cert-list">{archive.map((item) => <div className="cert-row" key={item.title}><span>{item.title}<small className="block text-[9px] text-[var(--muted-foreground)]">{item.issuer}{item.issued ? ` · ${item.issued}` : ""}{item.credentialId ? ` · ID: ${item.credentialId}` : ""}</small></span><span>{item.category}</span></div>)}{archive.length === 0 && <p className="muted">No matching certifications.</p>}</div>
   </details>;
 }
 

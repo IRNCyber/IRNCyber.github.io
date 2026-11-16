@@ -9,7 +9,7 @@ interface WebIconProps {
 
 export function WebIcon({ className = "w-7 h-7" }: WebIconProps) {
   const { currentColor } = useColorTheme();
-  const hex = currentColor?.hex || "#19d3b5";
+  const hex = currentColor?.hex || "var(--primary)";
   const gradId = `web-icon-grad-${currentColor?.id || "default"}`;
   const filterId = `web-icon-glow-${currentColor?.id || "default"}`;
 

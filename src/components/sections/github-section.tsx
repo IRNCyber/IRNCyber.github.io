@@ -87,8 +87,8 @@ export function GitHubSection() {
     <section id="github" className="py-12 sm:py-16">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="flex items-center gap-1.5 text-xs font-mono text-[#19d3b5] uppercase tracking-widest mb-1.5">
-            <Github className="w-4 h-4 text-[#19d3b5]" />
+          <div className="flex items-center gap-1.5 text-xs font-mono text-[var(--primary)] uppercase tracking-widest mb-1.5">
+            <Github className="w-4 h-4 text-[var(--primary)]" />
             <span>03 / OPEN SOURCE</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold font-sans text-white tracking-tight">
@@ -133,7 +133,7 @@ export function GitHubSection() {
         <div className="p-5 rounded-2xl bg-[#0e1218] border border-white/[0.08]">
           <div className="flex items-center justify-between text-xs font-mono text-zinc-400 mb-4 pb-2 border-b border-white/[0.06]">
             <span>Top Languages Across Repos</span>
-            <span className="text-[#19d3b5] text-[10px] uppercase font-bold">{status}</span>
+            <span className="text-[var(--primary)] text-[10px] uppercase font-bold">{status}</span>
           </div>
 
           {languages.length > 0 ? (
@@ -143,7 +143,7 @@ export function GitHubSection() {
                   <span className="w-24 text-zinc-300 font-medium truncate">{language}</span>
                   <div className="flex-1 h-2 rounded-full bg-[#141922] overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[#19d3b5]/60 to-[#19d3b5] rounded-full transition-all duration-500"
+                      className="h-full bg-gradient-to-r from-[var(--primary)]/60 to-[var(--primary)] rounded-full transition-all duration-500"
                       style={{ width: `${Math.max(12, (count / maxLanguageCount) * 100)}%` }}
                     />
                   </div>
@@ -166,7 +166,7 @@ export function GitHubSection() {
               href="https://github.com/IRNCyber?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#19d3b5] text-[10px] hover:underline flex items-center gap-1"
+              className="text-[var(--primary)] text-[10px] hover:underline flex items-center gap-1"
             >
               <span>View all</span>
               <ArrowUpRight className="w-3 h-3" />
@@ -181,10 +181,10 @@ export function GitHubSection() {
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/repo flex items-center justify-between p-2.5 rounded-xl bg-[#141922] border border-white/[0.04] hover:border-[#19d3b5]/40 hover:bg-[#18202d] transition-all"
+                  className="group/repo flex items-center justify-between p-2.5 rounded-xl bg-[#141922] border border-white/[0.04] hover:border-[var(--primary)]/40 hover:bg-[#18202d] transition-all"
                 >
                   <div className="min-w-0 pr-2">
-                    <span className="text-xs font-bold text-zinc-200 group-hover/repo:text-[#19d3b5] transition-colors truncate block">
+                    <span className="text-xs font-bold text-zinc-200 group-hover/repo:text-[var(--primary)] transition-colors truncate block">
                       {repo.full_name.split("/").at(-1)}
                     </span>
                     <span className="text-[10px] text-zinc-400 line-clamp-1">

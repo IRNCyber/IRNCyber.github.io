@@ -1,12 +1,14 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 
 export type ThemeColor = {
   id: string;
   name: string;
   hex: string;
+  lightHex: string;
   rgb: string;
+  lightRgb: string;
   bgDark: string;
   cardDark: string;
   bgLight: string;
@@ -20,7 +22,9 @@ export const THEME_COLORS: ThemeColor[] = [
     id: "teal",
     name: "Cyber Teal",
     hex: "#19d3b5",
+    lightHex: "#0f766e",
     rgb: "25, 211, 181",
+    lightRgb: "15, 118, 110",
     bgDark: "#060b0e",
     cardDark: "#0c1518",
     bgLight: "#f0faf8",
@@ -32,7 +36,9 @@ export const THEME_COLORS: ThemeColor[] = [
     id: "violet",
     name: "Electric Violet",
     hex: "#a855f7",
+    lightHex: "#7e22ce",
     rgb: "168, 85, 247",
+    lightRgb: "126, 34, 206",
     bgDark: "#0b0614",
     cardDark: "#140d22",
     bgLight: "#faf5ff",
@@ -44,7 +50,9 @@ export const THEME_COLORS: ThemeColor[] = [
     id: "emerald",
     name: "Matrix Green",
     hex: "#10b981",
+    lightHex: "#047857",
     rgb: "16, 185, 129",
+    lightRgb: "4, 120, 87",
     bgDark: "#050e09",
     cardDark: "#0b1a11",
     bgLight: "#f0fdf4",
@@ -56,7 +64,9 @@ export const THEME_COLORS: ThemeColor[] = [
     id: "cyan",
     name: "Neon Cyan",
     hex: "#06b6d4",
+    lightHex: "#0e7490",
     rgb: "6, 182, 212",
+    lightRgb: "14, 116, 144",
     bgDark: "#040d14",
     cardDark: "#091824",
     bgLight: "#ecfeff",
@@ -68,7 +78,9 @@ export const THEME_COLORS: ThemeColor[] = [
     id: "amber",
     name: "Solar Amber",
     hex: "#f59e0b",
+    lightHex: "#b45309",
     rgb: "245, 158, 11",
+    lightRgb: "180, 83, 9",
     bgDark: "#100b04",
     cardDark: "#1c1409",
     bgLight: "#fffbeb",
@@ -80,7 +92,9 @@ export const THEME_COLORS: ThemeColor[] = [
     id: "rose",
     name: "Crimson Red",
     hex: "#f43f5e",
+    lightHex: "#be123c",
     rgb: "244, 63, 94",
+    lightRgb: "190, 18, 60",
     bgDark: "#120508",
     cardDark: "#1e0a10",
     bgLight: "#fff1f2",
@@ -134,6 +148,7 @@ function updateDynamicFavicon(hex: string) {
 
 export function ColorThemeProvider({ children }: { children: React.ReactNode }) {
   const [currentColor, setCurrentColorState] = useState<ThemeColor>(THEME_COLORS[0]);
+  const activeColorRef = useRef(THEME_COLORS[0]);
 
   const applyColor = (color: ThemeColor) => {
     if (typeof document === "undefined") return;
@@ -141,9 +156,10 @@ export function ColorThemeProvider({ children }: { children: React.ReactNode }) 
     const isLight = root.classList.contains("light");
 
     // CSS variables for primary and accent
-    root.style.setProperty("--primary", color.hex);
-    root.style.setProperty("--accent", color.hex);
-    root.style.setProperty("--primary-rgb", color.rgb);
+    const accent = isLight ? color.lightHex : color.hex;
+    root.style.setProperty("--primary", accent);
+    root.style.setProperty("--accent", accent);
+    root.style.setProperty("--primary-rgb", isLight ? color.lightRgb : color.rgb);
 
     // CSS variables for ambient background
     root.style.setProperty("--ambient-a", color.hex);
@@ -177,12 +193,13 @@ export function ColorThemeProvider({ children }: { children: React.ReactNode }) 
       // Ignore
     }
 
+    activeColorRef.current = initialColor;
     setCurrentColorState(initialColor);
     applyColor(initialColor);
 
     // Watch for class changes on documentElement (e.g. dark/light mode toggle)
     const observer = new MutationObserver(() => {
-      applyColor(initialColor);
+      applyColor(activeColorRef.current);
     });
     observer.observe(document.documentElement, {
       attributes: true,
@@ -194,6 +211,7 @@ export function ColorThemeProvider({ children }: { children: React.ReactNode }) 
 
   const setColor = (color: ThemeColor) => {
     setCurrentColorState(color);
+    activeColorRef.current = color;
     applyColor(color);
     try {
       localStorage.setItem("irncyber-accent-color", color.id);

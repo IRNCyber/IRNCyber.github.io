@@ -12,6 +12,8 @@ import {
   Mail,
   Linkedin,
   ArrowUpRight,
+  BrainCircuit,
+  Smartphone,
 } from "lucide-react";
 import { BentoCardFrame } from "./bento-card-frame";
 
@@ -86,9 +88,31 @@ export function ProfileCard() {
                 Rohan Naagar
               </h1>
               <p className="text-xs sm:text-sm text-zinc-400 font-sans mt-0.5">
-                I&apos;m a Cybersecurity Student &amp; Web Developer
+                I&apos;m a Cybersecurity Student
               </p>
             </div>
+          </div>
+        </div>
+
+        <div>
+          <span className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+            Top skills
+          </span>
+          <div className="flex flex-wrap gap-1.5">
+            {[
+              { label: "Cybersecurity", icon: Code2 },
+              { label: "Artificial Intelligence (AI)", icon: BrainCircuit },
+              { label: "Web Development", icon: Code2 },
+              { label: "Android Development", icon: Smartphone },
+            ].map(({ label, icon: Icon }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-[#141922] px-2.5 py-1 text-[11px] text-zinc-300"
+              >
+                <Icon className="h-3 w-3 text-[var(--primary)]" />
+                <span>{label}</span>
+              </span>
+            ))}
           </div>
         </div>
 
@@ -119,7 +143,7 @@ export function ProfileCard() {
           <span>Email Me</span>
         </a>
         <a
-          href="https://www.linkedin.com/in/rohannaagar666"
+          href="https://www.linkedin.com/in/rohannaagar"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#141922] border border-white/[0.08] hover:border-[var(--primary)]/50 text-white font-semibold text-xs sm:text-sm hover:bg-[#18202d] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
