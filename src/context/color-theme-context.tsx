@@ -6,15 +6,17 @@ export type ThemeColor = {
   id: string;
   name: string;
   hex: string;
-  lightHex: string;
   rgb: string;
-  lightRgb: string;
   bgDark: string;
   cardDark: string;
   bgLight: string;
   cardLight: string;
   ambientB: string;
   ambientC: string;
+  lightHex?: string;
+  lightRgb?: string;
+  lightAmbientB?: string;
+  lightAmbientC?: string;
 };
 
 export const THEME_COLORS: ThemeColor[] = [
@@ -31,6 +33,8 @@ export const THEME_COLORS: ThemeColor[] = [
     cardLight: "#ffffff",
     ambientB: "#0d9488",
     ambientC: "#0284c7",
+    lightAmbientB: "#6366f1",
+    lightAmbientC: "#60a5fa",
   },
   {
     id: "violet",
@@ -45,6 +49,8 @@ export const THEME_COLORS: ThemeColor[] = [
     cardLight: "#ffffff",
     ambientB: "#7c3aed",
     ambientC: "#c084fc",
+    lightAmbientB: "#6d28d9",
+    lightAmbientC: "#a78bfa",
   },
   {
     id: "emerald",
@@ -59,6 +65,8 @@ export const THEME_COLORS: ThemeColor[] = [
     cardLight: "#ffffff",
     ambientB: "#059669",
     ambientC: "#34d399",
+    lightAmbientB: "#047857",
+    lightAmbientC: "#34d399",
   },
   {
     id: "cyan",
@@ -73,6 +81,8 @@ export const THEME_COLORS: ThemeColor[] = [
     cardLight: "#ffffff",
     ambientB: "#0284c7",
     ambientC: "#38bdf8",
+    lightAmbientB: "#0e7490",
+    lightAmbientC: "#67e8f9",
   },
   {
     id: "amber",
@@ -87,6 +97,8 @@ export const THEME_COLORS: ThemeColor[] = [
     cardLight: "#ffffff",
     ambientB: "#d97706",
     ambientC: "#fbbf24",
+    lightAmbientB: "#b45309",
+    lightAmbientC: "#fbbf24",
   },
   {
     id: "rose",
@@ -101,6 +113,8 @@ export const THEME_COLORS: ThemeColor[] = [
     cardLight: "#ffffff",
     ambientB: "#e11d48",
     ambientC: "#fb7185",
+    lightAmbientB: "#be123c",
+    lightAmbientC: "#fb7185",
   },
 ];
 
@@ -154,17 +168,18 @@ export function ColorThemeProvider({ children }: { children: React.ReactNode }) 
     if (typeof document === "undefined") return;
     const root = document.documentElement;
     const isLight = root.classList.contains("light");
+    const primaryHex = isLight ? color.lightHex ?? color.hex : color.hex;
+    const primaryRgb = isLight ? color.lightRgb ?? color.rgb : color.rgb;
 
     // CSS variables for primary and accent
-    const accent = isLight ? color.lightHex : color.hex;
-    root.style.setProperty("--primary", accent);
-    root.style.setProperty("--accent", accent);
-    root.style.setProperty("--primary-rgb", isLight ? color.lightRgb : color.rgb);
+    root.style.setProperty("--primary", primaryHex);
+    root.style.setProperty("--accent", primaryHex);
+    root.style.setProperty("--primary-rgb", primaryRgb);
 
     // CSS variables for ambient background
-    root.style.setProperty("--ambient-a", color.hex);
-    root.style.setProperty("--ambient-b", color.ambientB);
-    root.style.setProperty("--ambient-c", color.ambientC);
+    root.style.setProperty("--ambient-a", primaryHex);
+    root.style.setProperty("--ambient-b", isLight ? color.lightAmbientB ?? color.ambientB : color.ambientB);
+    root.style.setProperty("--ambient-c", isLight ? color.lightAmbientC ?? color.ambientC : color.ambientC);
 
     // Dynamic background and card colors that adapt with color selection
     if (isLight) {
@@ -176,7 +191,7 @@ export function ColorThemeProvider({ children }: { children: React.ReactNode }) 
     }
 
     // Update browser tab favicon dynamically
-    updateDynamicFavicon(color.hex);
+    updateDynamicFavicon(primaryHex);
   };
 
   useEffect(() => {
@@ -195,7 +210,7 @@ export function ColorThemeProvider({ children }: { children: React.ReactNode }) 
 
     activeColorRef.current = initialColor;
     setCurrentColorState(initialColor);
-    applyColor(initialColor);
+    applyColor(activeColorRef.current);
 
     // Watch for class changes on documentElement (e.g. dark/light mode toggle)
     const observer = new MutationObserver(() => {

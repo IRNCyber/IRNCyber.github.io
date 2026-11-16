@@ -1,7 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { ColorThemeProvider } from "@/context/color-theme-context";
 import { DATA } from "@/data/resume";
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
 

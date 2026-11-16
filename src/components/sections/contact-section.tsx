@@ -113,9 +113,9 @@ export function ContactSection() {
             <div className="flex flex-wrap items-center gap-3 mt-4">
               <a
                 href="mailto:rohannaagar666@gmail.com"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--primary)] text-black font-semibold text-xs hover:opacity-85 hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_4px_16px_-4px_rgba(var(--primary-rgb),0.3)]"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold text-xs hover:brightness-110 hover:scale-105 active:scale-95 transition-all duration-200 shadow-[0_4px_16px_-4px_rgba(var(--primary-rgb),0.3)]"
               >
-                <Mail className="w-4 h-4 text-black" />
+                <Mail className="w-4 h-4 text-[var(--primary-foreground)]" />
                 <span>Email me</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>

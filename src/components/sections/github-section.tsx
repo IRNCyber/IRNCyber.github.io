@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react";
-import { Github, ArrowUpRight, Star, GitFork, Code } from "lucide-react";
+import { Github, ArrowUpRight, Star } from "lucide-react";
 import { useColorTheme } from "@/context/color-theme-context";
+import { useTheme } from "next-themes";
 
 interface PublicRepo {
   full_name: string;
@@ -15,9 +16,31 @@ interface PublicRepo {
   archived: boolean;
 }
 
+const profileBadges = [
+  {
+    label: "CyberOps",
+    href: "https://github.com/IRNCyber",
+    image: "https://img.shields.io/badge/CyberOps-%23005BAC.svg?logo=github&logoColor=white",
+  },
+  {
+    label: "DevOps",
+    href: "https://github.com/IRNDevc",
+    image: "https://img.shields.io/badge/DevOps-%23FFFFFF.svg?logo=github&logoColor=black",
+  },
+  {
+    label: "RohanNaagar",
+    href: "https://github.com/Rohannaagar666",
+    image: "https://img.shields.io/badge/RohanNaagar-%23ED2939.svg?logo=github&logoColor=white",
+  },
+];
+
 export function GitHubSection() {
   const { currentColor } = useColorTheme();
-  const colorHex = currentColor.hex.replace("#", "");
+  const { resolvedTheme } = useTheme();
+  const activeColor = resolvedTheme === "light"
+    ? currentColor.lightHex ?? currentColor.hex
+    : currentColor.hex;
+  const colorHex = activeColor.replace("#", "");
   const [repos, setRepos] = useState<PublicRepo[]>([]);
   const [status, setStatus] = useState<"loading" | "live" | "cached" | "error">("loading");
 
@@ -106,6 +129,45 @@ export function GitHubSection() {
         </a>
       </div>
 
+      <div className="flex flex-wrap items-center gap-2.5 mb-5" aria-label="GitHub profile badges">
+        {profileBadges.map((badge) => (
+          <a key={badge.label} href={badge.href} target="_blank" rel="noopener noreferrer">
+            <img src={badge.image} alt={`${badge.label} GitHub profile`} loading="lazy" />
+          </a>
+        ))}
+      </div>
+
+      <article className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-4 p-5 rounded-2xl bg-[#0e1218] border border-white/[0.08] mb-6">
+        <div>
+          <span className="text-[10px] font-mono text-[var(--primary)] uppercase tracking-wider">
+            Featured Repository
+          </span>
+          <h3 className="text-base font-bold text-white mt-1">Rust Weather App</h3>
+          <a
+            href="https://github.com/IRNCyber/Rust-Weather--App"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 mt-2 text-xs text-[var(--primary)] hover:underline"
+          >
+            View repository <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+        <a
+          href="https://github.com/IRNCyber/Rust-Weather--App/graphs/contributors"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View Rust Weather App contributors on GitHub"
+          className="block"
+        >
+          <img
+            src="https://contrib.rocks/image?repo=IRNCyber/Rust-Weather--App&columns=24"
+            alt="Contributors to IRNCyber/Rust-Weather--App"
+            loading="lazy"
+            className="max-w-full h-auto"
+          />
+        </a>
+      </article>
+
       {/* Contribution Activity Graph */}
       <div className="p-5 sm:p-6 rounded-2xl bg-[#0e1218] border border-white/[0.08] hover:border-[var(--primary)]/40 transition-all duration-300 mb-6 overflow-hidden">
         <div className="flex items-center justify-between text-xs font-mono text-zinc-400 mb-4 pb-3 border-b border-white/[0.06]">
@@ -143,8 +205,11 @@ export function GitHubSection() {
                   <span className="w-24 text-zinc-300 font-medium truncate">{language}</span>
                   <div className="flex-1 h-2 rounded-full bg-[#141922] overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[var(--primary)]/60 to-[var(--primary)] rounded-full transition-all duration-500"
-                      style={{ width: `${Math.max(12, (count / maxLanguageCount) * 100)}%` }}
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{
+                        width: `${Math.max(12, (count / maxLanguageCount) * 100)}%`,
+                        background: "linear-gradient(to right, color-mix(in srgb, var(--primary) 60%, transparent), var(--primary))",
+                      }}
                     />
                   </div>
                   <span className="w-6 text-right font-mono text-[10px] text-zinc-400">{count}</span>

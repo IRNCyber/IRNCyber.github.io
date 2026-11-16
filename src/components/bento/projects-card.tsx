@@ -78,10 +78,10 @@ export function ProjectsCard() {
       <div className="absolute inset-x-0 bottom-3 flex justify-center z-20 pointer-events-none">
         <a
           href="#projects"
-          className="pointer-events-auto inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--primary)] text-black font-semibold text-xs shadow-lg hover:opacity-90 hover:scale-105 active:scale-95 transition-all duration-200"
+          className="pointer-events-auto inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold text-xs shadow-lg hover:opacity-90 hover:scale-105 active:scale-95 transition-all duration-200"
         >
           <span>View Works</span>
-          <Sparkles className="w-3 h-3 text-black" />
+          <Sparkles className="w-3 h-3 text-[var(--primary-foreground)]" />
         </a>
       </div>
     </BentoCardFrame>
